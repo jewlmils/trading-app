@@ -1,16 +1,17 @@
 Rails.application.routes.draw do
-  devise_for :admins,  controllers: {
-        sessions: 'admins/sessions',
-        registrations: 'admins/registrations'
-      }
-      
-  devise_for :traders,  controllers: {
-        sessions: 'traders/sessions',
-        registrations: 'traders/registrations'
-      }
-
   root 'home#landing'
-  get 'home/landing'
-  get 'home/trader'
-  get 'home/admin'
+
+  get 'home/trader', to: 'home#trader', as: :home_trader
+  get 'home/admin', to: 'home#admin', as: :home_admin
+
+  devise_for :admins,  controllers: {
+    sessions: 'admins/sessions',
+    registrations: 'admins/registrations'
+  }
+  
+  devise_for :traders,  controllers: {
+     sessions: 'traders/sessions',
+     registrations: 'traders/registrations'
+   }
+   
 end

@@ -1,2 +1,7 @@
-<h1>Home#trader</h1>
-<p>Find me in app/views/home/trader.html.erb</p>
+<div>
+  <% if trader_signed_in? %>
+    <%= link_to "Sign out", destroy_trader_session_path, method: :delete, data: {  turbo_method: :delete } %>
+    <%= link_to "Edit registration", edit_trader_registration_path %>
+    <%end%>
+  <h1 class="font-bold text-4xl">Trader Dashboard</h1>
+</div>
