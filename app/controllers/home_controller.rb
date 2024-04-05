@@ -23,17 +23,17 @@ class HomeController < ApplicationController
   end
 
   def require_admin
-    unless admin_signed_in?
-      flash[:notice] = "You need to be an admin to access admin pages."
-      redirect_to home_trader_path
-    end
+    return if admin_signed_in?
+
+    flash[:notice] = "You need to be an admin to access admin pages."
+    redirect_to home_trader_path
   end
 
   def require_trader
-    unless trader_signed_in?
-      flash[:notice] = "The page you're trying to access is for Traders only."
-      redirect_to home_admin_path
-    end
+    return if trader_signed_in?
+
+    flash[:notice] = "The page you're trying to access is for Traders only."
+    redirect_to home_admin_path
   end
 
 end
