@@ -1,8 +1,5 @@
-import Notification from "@stimulus-components/notification";
+import { Application } from "@hotwired/stimulus";
+import Notification from "stimulus-notification";
 
-export default class extends Notification {
-  connect() {
-    super.connect();
-    console.log("Do what you want here.");
-  }
-}
+const application = Application.start();
+application.register("notification", Notification);
