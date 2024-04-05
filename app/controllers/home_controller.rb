@@ -1,8 +1,6 @@
 class HomeController < ApplicationController
-  # before_action :authenticate_trader!, only: [:trader]
-  # before_action :authenticate_admin!, only: [:admin]
-
-  before_action :require_admin, only: [ :admin]
+  before_action :redirect_signed_in_user, only: :landing
+  before_action :require_admin, only: :admin
   before_action :require_trader, only: :trader
 
   def landing
@@ -15,6 +13,14 @@ class HomeController < ApplicationController
   end
 
   private
+
+  def redirect_signed_in_user
+    if admin_signed_in?
+      redirect_to home_admin_path
+    elsif trader_signed_in?
+      redirect_to home_trader_path
+    end
+  end
 
   def require_admin
     unless admin_signed_in?
