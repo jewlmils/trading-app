@@ -32,7 +32,7 @@ class HomeController < ApplicationController
   def require_trader
     return if trader_signed_in?
 
-    flash[:notice] = "The page you're trying to access is for Traders only."
+    flash[:notice] = "The page you're trying to access is for traders only."
     redirect_to home_admin_path
   end
 
