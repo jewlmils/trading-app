@@ -10,6 +10,7 @@ class HomeController < ApplicationController
   end
 
   def admin
+    @traders = Trader.all
   end
 
   private
