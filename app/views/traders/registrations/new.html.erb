@@ -1,0 +1,34 @@
+<div class="mx-auto max-w-7xl px-4 flex justify-center items-center">
+  <div class="sm:mx-auto sm:w-full sm:max-w-md ">
+    <div class="bg-gray21 py-8 px-4 shadow sm:rounded-lg sm:px-10"> 
+      <div class="mb-4">
+          <h1 class="m-0 text-center font-bold tracking-tight text-5xl text-white">Hello</h1>
+          <h4 class="text-center mt-0 text-white">Create your account</h4>
+      </div>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= render "traders/shared/error_messages", resource: resource %>
+        <div class="grid md:grid-cols-2 md:gap-3 mb-4">
+          <div >
+            <%= f.label :first_name, class: "text-sm font-medium text-white" %><br />
+            <%= f.text_field :first_name, autocomplete: "given-name", placeholder: "Juan",  class: "w-full rounded-md border border-gray-300 shadow-md shadow-gray-900/10" %>
+          </div>
+          <div >
+            <%= f.label :last_name, class: "text-sm font-medium text-white" %><br />
+            <%= f.text_field :last_name, autocomplete: "family-name", placeholder: "Dela Cruz",  class: "w-full rounded-md border border-gray-300 shadow-md shadow-gray-900/10" %>
+          </div>
+        </div>
+        <div class="mb-4">
+          <%= f.label :email, class: "block text-sm font-medium text-white" %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "name@email.com", class: "mt-1 p-2 w-full rounded-md border border-gray-300 shadow-md shadow-gray-900/10"%>
+         </div>
+        <div class="mb-4">
+          <%= f.label :password, class: "block text-sm font-medium text-white" %>
+          <%= f.password_field :password, autocomplete: "current-password", class: "mt-1 p-2 w-full rounded-md border border-gray-300 shadow-md shadow-gray-900/10" %>
+        </div>
+        <div class="mb-4 pt-2">
+          <%= f.submit "Submit", class: "w-full bg-gradient hover:bg-purple-800 rounded-big focus:ring-4 focus:outline-none focus:ring-blue-300 text-white font-medium text-sm py-2.5 shadow-md shadow-gray-900/10" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
