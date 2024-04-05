@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :stocks, only: [:index, :show]
+
   root 'home#landing'
 
   get 'home/trader', to: 'home#trader', as: :home_trader
