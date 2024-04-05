@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :stocks, only: [:index, :show]
+
   devise_for :admins,  controllers: {
         sessions: 'admins/sessions',
         registrations: 'admins/registrations'
