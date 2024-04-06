@@ -1,0 +1,13 @@
+<h1 class="text-white">EDIT PAGE</h1>
+
+<div class="text-black">
+<%= form_with(model: @trader, url: admin_page_path(@trader), method: :patch) do |f| %>
+  <%= f.label :first_name %>
+  <%= f.text_field :first_name, class: "text-black" %>
+  <%= f.label :last_name %>
+  <%= f.text_field :last_name, class: "text-black" %>
+  <%= f.label :email %>
+  <%= f.text_field :email, class: "text-black" %>
+  <%= f.submit %>
+<% end %>
+</div>

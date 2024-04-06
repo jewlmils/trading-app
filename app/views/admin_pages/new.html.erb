@@ -1,0 +1,6 @@
+<h1 class="text-white">NEW PAGE</h1>
+
+<%= form_for(trader, url: admin_page_path(trader), remote: true, method: :patch) do |f| %>
+<%= f.text_field :email %>
+<%= f.submit %>
+<% end %>
