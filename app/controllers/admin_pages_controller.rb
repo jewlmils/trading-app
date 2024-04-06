@@ -17,6 +17,7 @@ class AdminPagesController < ApplicationController
     @trader = Trader.new(trader_params)
     @trader.admin_created = true
     @trader.approved = true
+    @trader.confirmed_at = Time.zone.now
     if @trader.save
       redirect_to admin_pages_path, notice: 'Trader was successfully created.'
     else
