@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
   root 'pages#landing'
-
+  resources :admin_pages, as: 'admin_pages'
   get 'pages/trader', to: 'pages#trader', as: :pages_trader
-  get 'pages/admin', to: 'admin_pages#index', as: :pages_admin
 
   devise_for :admins,  controllers: {
     sessions: 'admins/sessions',
