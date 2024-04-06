@@ -1,0 +1,55 @@
+<div class="flex justify-center">
+  <div class="overflow-x-auto sm:mx-4 lg:mx-4">
+    <div class=" inline-block min-w-full sm:px-6 lg:px-8">
+      <div class="overflow-hidden">
+        <table class="min-w-full">
+          <thead class="bg-black border-b">
+            <tr>
+              <th scope="col" class="text-sm font-medium text-white px-6 py-4 text-left">
+                ID
+              </th>
+              <th scope="col" class="text-sm font-medium text-white px-6 py-4 text-left">
+                Name
+              </th>
+              <th scope="col" class="text-sm font-medium text-white px-6 py-4 text-left">
+                Email
+              </th>
+              <th scope="col" class="text-sm font-medium text-white px-6 py-4 text-left">
+                Status
+              </th>
+              <th scope="col" class="text-sm font-medium text-white px-6 py-4 text-left">
+                Action
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @traders.each do |trader| %>
+              <tr class="bg-gray21 border-b">
+                <td>
+                  <%= link_to trader.id, admin_page_path(trader), class: "no-underline text-sm text-white font-light px-6 py-4 whitespace-nowrap" %>
+                </td>
+                <td class="text-sm text-white font-light px-6 py-4 whitespace-nowrap">
+                  <%= trader.first_name %> <%= trader.last_name %>
+                </td>
+                <td class="text-sm text-white font-light px-6 py-4 whitespace-nowrap">
+                  <%= trader.email %>
+                </td>
+                <td class="text-xs font-medium px-6 py-4 whitespace-nowrap" style="<%= trader.confirmed? ? 'color: green;' : 'color: red;' %>">
+                  <%= trader.confirmed? ? "Confirmed" : "Not Confirmed" %>
+                </td>
+                <td class="text-sm text-white font-light px-6 py-4 whitespace-nowrap">
+                  <i class="fas fa-edit"></i>
+                  <i class="fa fa-trash" aria-hidden="true"></i>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
