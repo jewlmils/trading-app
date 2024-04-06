@@ -1,6 +1,13 @@
-<h1 class="text-white">NEW PAGE</h1>
+<h1 class="text-white">New Trader</h1>
 
-<%= form_for(trader, url: admin_page_path(trader), remote: true, method: :patch) do |f| %>
-<%= f.text_field :email %>
-<%= f.submit %>
+<%= form_with(model: @trader, url: admin_pages_path, method: :post, local: false) do |f| %>
+  <%= f.label :first_name %>
+  <%= f.text_field :first_name, class: "text-black" %>
+  <%= f.label :last_name %>
+  <%= f.text_field :last_name, class: "text-black" %>
+  <%= f.label :email %>
+  <%= f.text_field :email, class: "text-black" %>
+  <%= f.label :password %>
+  <%= f.text_field :password, class: "text-black" %>
+  <%= f.submit %>
 <% end %>

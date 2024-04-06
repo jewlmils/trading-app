@@ -9,17 +9,31 @@ class AdminPagesController < ApplicationController
   def show
   end
 
+  def new
+    @trader = Trader.new
+  end
+
+  def create
+    @trader = Trader.new(trader_params)
+    @trader.admin_created = true
+    @trader.approved = true
+    if @trader.save
+      redirect_to admin_pages_path, notice: 'Trader was successfully created.'
+    else
+      render :new
+    end
+  end
+
   def edit
   end
 
   def update
     if @trader.update(trader_params)
-      redirect_to admin_pages_path, notice: 'User was successfully updated.'
+      redirect_to admin_pages_path, notice: 'Trader was successfully updated.'
     else
       render :edit
     end
   end
-
 
   private
 
@@ -34,6 +48,7 @@ class AdminPagesController < ApplicationController
   end
 
   def trader_params
-    params.require(:trader).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+    params.require(:trader).permit(:first_name, :last_name, :email, :password, :password_confirmation, :admin_created, :approved)
   end
+  
 end
