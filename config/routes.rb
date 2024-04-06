@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  root 'home#landing'
+  root 'pages#landing'
 
-  get 'home/trader', to: 'home#trader', as: :home_trader
-  get 'home/admin', to: 'home#admin', as: :home_admin
+  get 'pages/trader', to: 'pages#trader', as: :pages_trader
+  get 'pages/admin', to: 'admin_pages#index', as: :pages_admin
 
   devise_for :admins,  controllers: {
     sessions: 'admins/sessions',
