@@ -1,14 +1,8 @@
 <div class="mx-auto max-w-7xl px-4 py-12">
   <div class="mx-auto max-w-4xl">
 
-    <div class="flex justify-between  items-center" style="margin-top: 20px;">
-       <h1 class="m-0 text-white">Approved Traders</h1>
-       <div>
-         <%= link_to new_admin_page_path, class: "btn-main bg-gradient" do %>
-           Create Trader
-           <i class="fas fa-plus"></i> 
-         <% end %>
-       </div>
+    <div style="margin-top: 20px;">
+       <h1 class="m-0 text-white">Pending Traders</h1>
     </div>
         
     <div class=""> <!-- temporary table design -->
@@ -39,7 +33,7 @@
                   <% @traders.each do |trader| %>
                     <tr class="bg-gray21 border-b">
                       <td>
-                        <%= link_to trader.id, admin_page_path(trader.id), class: "no-underline text-sm text-white font-light px-6 py-4 whitespace-nowrap" %>
+                        <%= link_to trader.id, admin_page_path(trader), class: "no-underline text-sm text-white font-light px-6 py-4 whitespace-nowrap" %>
                       </td>
                       <td class="text-sm text-white font-light px-6 py-4 whitespace-nowrap">
                         <%= trader.first_name %> <%= trader.last_name %>
