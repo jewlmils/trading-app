@@ -4,7 +4,6 @@ class AdminPagesController < ApplicationController
 
   def index
     @traders = Trader.where(approved: true)
-   
   end
 
   def pending_traders
@@ -38,8 +37,6 @@ class AdminPagesController < ApplicationController
       render :edit
     end
   end
-  
-  
 
   private
 
