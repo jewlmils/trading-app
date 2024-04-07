@@ -1,24 +1,39 @@
-# README
+# Trading App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a simple trading app project built using Devise for authentication, Tailwind CSS for styling, Turbo Stimulus for interactivity, RSpec for testing, and the IEX API for fetching stock market data.
 
-Things you may want to cover:
+### Technologies Used
 
-* Ruby version
+- Devise
+- Tailwind CSS
+- Turbo Stimulus
+- RSpec
+- IEX API
 
-* System dependencies
+### Installation
 
-* Configuration
+1. Clone the repository:
+   `git clone <repository-url>`
 
-* Database creation
+2. Install dependencies:
+   `bundle install`
 
-* Database initialization
+3. Set up the database:
+   `rails db:create
+rails db:migrate`
 
-* How to run the test suite
+4. Obtain an API key from the IEX API website (https://iexcloud.io/) if you haven't already.
+5. Set your IEX API key as an environment variable. You can do this by creating a `.env` file in the root of your project and adding the following line:
+   `IEX_API_KEY=your-api-key`
 
-* Services (job queues, cache servers, search engines, etc.)
+6. Start the Rails server:
+   `rails server`
 
-* Deployment instructions
+7. Visit `http://localhost:3000` in your browser to view the app.
 
-* ...
+### Testing
+
+RSpec is used for testing. To run the tests, use the following command:
+`bundle exec rspec`
+
+This will run all the tests and provide feedback on the application's behavior.

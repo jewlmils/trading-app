@@ -1,0 +1,65 @@
+<div class="mx-auto max-w-7xl px-4 py-12">
+  <div class="mx-auto max-w-4xl">
+
+    <div style="margin-top: 20px;">
+    <!-- temporary button, ende aq marunong gumawa ng sidebar :((( -->
+    <%= link_to 'Approved Traders', admin_pages_path, class: 'text-white font-medium' %>
+
+    <h1 class="m-0 text-white">Pending Traders</h1>
+    </div>
+        
+    <div class=""> <!-- temporary table design -->
+        <div class="overflow-x-auto">
+          <div class="inline-block min-w-full rounded-big">
+            <div class="overflow-hidden">
+              <table class="min-w-full">
+                <thead class="bg-black border-b">
+                  <tr>
+                    <th scope="col" class="text-sm font-medium text-white px-6 py-4 text-left">
+                      ID
+                    </th>
+                    <th scope="col" class="text-sm font-medium text-white px-6 py-4 text-left">
+                      Name
+                    </th>
+                    <th scope="col" class="text-sm font-medium text-white px-6 py-4 text-left">
+                      Email
+                    </th>
+                    <!--<th scope="col" class="text-sm font-medium text-white px-6 py-4 text-left">
+                      Email Status
+                    </th>-->
+                    <th scope="col" class="text-sm font-medium text-white px-6 py-4 text-left">
+                      Action
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @traders.each do |trader| %>
+                    <tr class="bg-gray21 border-b">
+                      <td>
+                        <%= link_to trader.id, admin_page_path(trader), class: "no-underline text-sm text-white font-light px-6 py-4 whitespace-nowrap" %>
+                      </td>
+                      <td class="text-sm text-white font-light px-6 py-4 whitespace-nowrap">
+                        <%= trader.first_name %> <%= trader.last_name %>
+                      </td>
+                      <td class="text-sm text-white font-light px-6 py-4 whitespace-nowrap">
+                        <%= trader.email %>
+                      </td>
+                      <!--<td class="text-xs font-medium px-6 py-4 whitespace-nowrap" style="<%= trader.confirmed? ? 'color: green;' : 'color: red;' %>">
+                        <%= trader.confirmed? ? "Confirmed" : "Not Confirmed" %>
+                      </td> -->
+                      <td class="text-sm text-white font-light px-6 py-4 whitespace-nowrap">
+                        <%= link_to edit_admin_page_path(trader) do %>
+                        <i class="fas fa-edit text-white"></i>
+                        <% end %>
+                      </td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+    </div>
+
+  </div>
+</div>

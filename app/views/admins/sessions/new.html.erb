@@ -1,26 +1,25 @@
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
-
-<%= render "admins/shared/links" %>
+<div class="mx-auto max-w-7xl px-4 flex justify-center items-center h-screen">
+    <div class="sm:mx-auto sm:w-full sm:max-w-md ">
+        <div class="bg-gray21 py-8 px-4 shadow sm:rounded-lg sm:px-10"> 
+            <div class="mb-4">
+              <h2 class="text-center mt-0 text-white">
+                Login to your Admin Account
+              </h2>
+            </div>
+            <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+            <%= render "devise/shared/error_messages", resource: resource %>
+            <div class="mb-4">
+                 <%= f.label :email, class: "block text-sm font-medium text-white" %>
+                <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "name@email.com", class: "mt-1 p-2 w-full rounded-md border border-gray-300 shadow-md shadow-gray-900/10 "%>
+            </div>
+             <div class="mb-4">
+                <%= f.label :password, class: "block text-sm font-medium text-white" %>
+                <%= f.password_field :password, autocomplete: "current-password", class: "mt-1 p-2 w-full rounded-md border border-gray-300 shadow-md shadow-gray-900/10 " %>
+            </div>
+             <div class="mb-4 pt-2">
+                <%= f.submit "Submit", class: "w-full bg-gradient rounded-big focus:ring-4 focus:outline-none focus:ring-blue-300 text-white font-bold text-xl py-2.5 shadow-md shadow-gray-900/10" %>
+             </div>
+            <% end %>
+        </div>
+        </div>
+</div>
