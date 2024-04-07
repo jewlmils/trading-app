@@ -13,9 +13,10 @@ module.exports = {
         sans: ["Inter var", ...defaultTheme.fontFamily.sans],
       },
       colors: {
+        gray21: "#201d29",
+        gray22: "#1c1924",
         gray23: "#131118",
         gray24: "#09080c",
-        gray21: "#201d29",
       },
     },
   },
