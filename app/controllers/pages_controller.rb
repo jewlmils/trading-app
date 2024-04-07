@@ -13,6 +13,8 @@ class PagesController < ApplicationController
   def redirect_signed_in_user
     if admin_signed_in?
       redirect_to admin_pages_path
+    elsif trader_signed_in?
+      redirect_to trader_thankyou_path
     elsif current_trader && current_trader.approved?
       redirect_to trader_path
     end
