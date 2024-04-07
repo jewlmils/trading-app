@@ -14,7 +14,6 @@ class Trader < ApplicationRecord
     !admin_created? && super
   end
 
-  # if we want for traders cant sign in unless approved by the admin
   def active_for_authentication? 
     super && approved?
   end 
@@ -22,6 +21,4 @@ class Trader < ApplicationRecord
   def send_admin_mail
     AdminMailer.new_user_waiting_for_approval(email).deliver
   end
-  
-
 end

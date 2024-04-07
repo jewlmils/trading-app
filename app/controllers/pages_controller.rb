@@ -10,7 +10,7 @@ class PagesController < ApplicationController
     if admin_signed_in?
       redirect_to admin_pages_path
     elsif trader_signed_in?
-      redirect_to trader_path
+      redirect_to pages_trader_path
     end
   end
 end
