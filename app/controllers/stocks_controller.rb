@@ -3,8 +3,15 @@ class StocksController < ApplicationController
 
   def index
     if params[:search]
-      @quote = search_stocks(params[:search])
-      render :show
+      @search_keyword = params[:search]
+      @quote = search_stocks(@search_keyword)
+      if @quote != nil
+        @error = false
+        render :show
+      else
+        @error = true
+        render :show
+      end
     end
   end
 
@@ -17,11 +24,12 @@ class StocksController < ApplicationController
   private
 
   def search_stocks(keyword)
-    quote = @client.quote(keyword)
-    if quote != nil
+    begin
+      quote = @client.quote(keyword)
       return quote
-    else
-      puts "No stock found"
+    rescue IEX::Errors::SymbolNotFoundError => e
+      puts "Symbol not found: #{keyword}"
+      return nil
     end
   end
 end
