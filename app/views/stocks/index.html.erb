@@ -1,0 +1,7 @@
+<h1>Symbols</h1>
+
+<ul>
+    <% @symbols.each do |symbol| %>
+        <li><%= link_to symbol, stock_path(symbol) %></li>
+    <% end %>
+</ul>

@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  
+  resources :stocks, only: [:index, :show]
+
   root 'pages#landing'
   
   get 'admin/pending_traders', to: 'admin_pages#pending_traders'
