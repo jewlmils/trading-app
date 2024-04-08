@@ -2,7 +2,10 @@ class StocksController < ApplicationController
   before_action :set_client
 
   def index
-    @symbols = @client.ref_data_symbols.map(&:symbol)
+    if params[:search]
+      @quote = search_stocks(params[:search])
+      render :show
+    end
   end
 
   def show
@@ -11,18 +14,14 @@ class StocksController < ApplicationController
     @price = @client.price(@symbol)
   end
 
-  # def new
-  # end
+  private
 
-#   def create
-#   end
-
-#   def edit
-#   end
-
-#   def update
-#   end
-
-#   def destroy
-#   end
+  def search_stocks(keyword)
+    quote = @client.quote(keyword)
+    if quote != nil
+      return quote
+    else
+      puts "No stock found"
+    end
+  end
 end
