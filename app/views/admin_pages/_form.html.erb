@@ -19,6 +19,12 @@
           <%= f.label :email, class: "block text-sm font-medium text-white" %>
           <%= f.email_field :email, class: "mt-1 p-2 w-full rounded-md border border-gray-300 shadow-md shadow-gray-900/10"%>
         </div>
+        <% if @trader.new_record? %> 
+        <div class="mb-4">
+            <%= f.label :password, class: "block text-sm font-medium text-white" %>
+            <%= f.password_field :password, autocomplete: "current-password", class: "mt-1 p-2 w-full rounded-md border border-gray-300 shadow-md shadow-gray-900/10 " %>
+          </div>
+        <% end %>
         <% if !@trader.new_record? %> 
           <div class="mt-1">
             <label class="inline-flex items-center">
