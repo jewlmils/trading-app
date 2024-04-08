@@ -5,6 +5,9 @@ class Trader < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :confirmable
    
+  has_many :portfolios
+  has_many :stock, through: :portfolios
+
   validates :first_name, presence: true
   validates :last_name, presence: true
 
