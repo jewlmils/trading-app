@@ -1,0 +1,43 @@
+<div class="mx-auto max-w-7xl flex justify-center items-center h-screen">
+  <div class="sm:mx-auto sm:w-full sm:max-w-md ">
+    <div class="bg-gray21 py-8 px-4 shadow sm:rounded-lg sm:px-10"> 
+      <div class="mb-4">
+          <h1 class="m-0 text-center font-bold tracking-tight text-5xl text-white"><%= @trader.new_record? ? 'New' : 'Edit' %> Trader</h1>
+      </div>
+      <%= form_with(model: @trader, url: @trader.new_record? ? admin_pages_path : admin_page_path(@trader), method: @trader.new_record? ? :post : :patch, local: false) do |f| %>
+        <div class="grid md:grid-cols-2 md:gap-3 mb-4">
+          <div >
+            <%= f.label :first_name, class: "text-sm font-medium text-white" %><br />
+            <%= f.text_field :first_name, class: "w-full rounded-md border border-gray-300 shadow-md shadow-gray-900/10" %>
+          </div>
+          <div >
+            <%= f.label :last_name, class: "text-sm font-medium text-white" %><br />
+            <%= f.text_field :last_name, class: "w-full rounded-md border border-gray-300 shadow-md shadow-gray-900/10" %>
+          </div>
+        </div>
+        <div class="mb-4">
+          <%= f.label :email, class: "block text-sm font-medium text-white" %>
+          <%= f.email_field :email, class: "mt-1 p-2 w-full rounded-md border border-gray-300 shadow-md shadow-gray-900/10"%>
+        </div>
+        <% if @trader.new_record? %> 
+        <div class="mb-4">
+            <%= f.label :password, class: "block text-sm font-medium text-white" %>
+            <%= f.password_field :password, autocomplete: "current-password", class: "mt-1 p-2 w-full rounded-md border border-gray-300 shadow-md shadow-gray-900/10 " %>
+          </div>
+        <% end %>
+        <% if !@trader.new_record? %> 
+          <div class="mt-1">
+            <label class="inline-flex items-center">
+              <%= f.check_box :approved, { checked: @trader.approved }, true, false %>
+              <span class="ml-2 text-sm text-white">Approved</span>
+            </label>
+          </div>
+        <% end %>
+
+        <div class="mb-4 pt-2">
+          <%= f.submit "Submit", class: "w-full bg-gradient rounded-big focus:ring-4 focus:outline-none focus:ring-blue-300 text-white font-bold text-xl py-2.5 shadow-md shadow-gray-900/10" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

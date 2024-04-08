@@ -3,12 +3,12 @@ class AdminPagesController < ApplicationController
   before_action :set_trader, only: [:show, :edit, :update]
 
   def index
-    @traders = Trader.where.not(approved: false) #filter trader who have confirmed their emails.
+    @pagy, @traders = pagy(Trader.where(approved: true).sorted)
   end
 
   def pending_traders
-    @traders = Trader.where.not(confirmed_at: nil)
-  end
+    @traders = Trader.where.not(confirmed_at: nil).where(approved: false)
+  end  
 
   def show
   end
@@ -31,12 +31,12 @@ class AdminPagesController < ApplicationController
 
   def update
     if @trader.update(trader_params)
+      TraderMailer.account_approved_email(@trader).deliver_now if @trader.approved?
       redirect_to admin_pages_path, notice: 'Trader was successfully updated.'
     else
       render :edit
     end
   end
-  
 
   private
 
