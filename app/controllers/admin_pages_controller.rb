@@ -7,7 +7,7 @@ class AdminPagesController < ApplicationController
   end
 
   def pending_traders
-    @traders = Trader.where.not(confirmed_at: nil).where(approved: false)
+    @pagy, @traders = pagy(Trader.where.not(confirmed_at: nil).where(approved: false))
   end  
 
   def show
