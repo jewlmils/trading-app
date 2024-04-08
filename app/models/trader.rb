@@ -8,6 +8,8 @@ class Trader < ApplicationRecord
   validates :first_name, presence: true
   validates :last_name, presence: true
 
+  scope :sorted, -> { order(Arel::Table.new(:traders)[:created_at].desc.nulls_first).order(updated_at: :desc) }
+
   def confirmation_required?
     !admin_created? && super
   end

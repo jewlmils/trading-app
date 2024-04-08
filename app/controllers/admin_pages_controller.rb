@@ -3,7 +3,7 @@ class AdminPagesController < ApplicationController
   before_action :set_trader, only: [:show, :edit, :update]
 
   def index
-    @traders = Trader.where(approved: true)
+    @pagy, @traders = pagy(Trader.where(approved: true).sorted)
   end
 
   def pending_traders
