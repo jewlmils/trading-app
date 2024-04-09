@@ -1,0 +1,51 @@
+<h1>Welcome, <%= @trader.first_name %>!</h1>
+
+<h2>Trader Information:</h2>
+<p>Name: <%= @trader.first_name %> <%= @trader.last_name %></p>
+<p>Email: <%= @trader.email %></p>
+<p>Wallet Balance: <%= @trader.wallet %></p>
+
+<h2>Portfolio:</h2>
+<% if @portfolio.present? %>
+  <table>
+    <thead>
+      <tr>
+        <th>Stock</th>
+        <th>Number of Shares</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% portfolio.stocks.each do |stock| %>
+        <li><%= stock.company_name %>: <%= stock.number_of_shares %> shares</li>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No stocks in the portfolio.</p>
+<% end %>
+
+<h2>Transaction History:</h2>
+<% if @transactions.present? %>
+  <table>
+    <thead>
+      <tr>
+        <th>Stock</th>
+        <th>Transaction Type</th>
+        <th>Number of Shares</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @transactions.each do |transaction| %>
+        <tr>
+          <td><%= transaction.stock.ticker_symbol %> - <%= transaction.stock.company_name %></td>
+          <td><%= transaction.transaction_type %></td>
+          <td><%= transaction.number_of_shares %></td>
+          <td><%= transaction.price %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No transaction history.</p>
+<% end %>

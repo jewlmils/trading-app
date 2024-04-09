@@ -2,7 +2,15 @@ class StocksController < ApplicationController
   before_action :set_client
 
   def index
-    @symbols = @client.ref_data_symbols.map(&:symbol)
+    if params[:search]
+      @search_keyword = params[:search]
+      @quote = search_stocks(@search_keyword)
+      if @quote.nil?
+        redirect_to stocks_path, alert: "No stocks available for #{@search_keyword}"
+      else
+        render :show
+      end
+    end
   end
 
   def show
@@ -11,18 +19,12 @@ class StocksController < ApplicationController
     @price = @client.price(@symbol)
   end
 
-  # def new
-  # end
+  private
 
-#   def create
-#   end
-
-#   def edit
-#   end
-
-#   def update
-#   end
-
-#   def destroy
-#   end
+  def search_stocks(keyword)
+    @client.quote(keyword)
+  rescue IEX::Errors::SymbolNotFoundError => e
+    puts "Symbol not found: #{keyword}"
+    nil
+  end
 end

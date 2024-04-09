@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  trader: one
+  stock: one
+  shares: 1
+
+two:
+  trader: two
+  stock: two
+  shares: 1

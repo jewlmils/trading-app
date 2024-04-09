@@ -1,7 +1,8 @@
-<h1>Symbols</h1>
-
-<ul>
-    <% @symbols.each do |symbol| %>
-        <li><%= link_to symbol, stock_path(symbol) %></li>
-    <% end %>
-</ul>
+<div class="my-8">
+  <%= form_tag(stocks_path, method: :get, class: "flex items-center") do %>
+    <div class="flex items-center border rounded-md overflow-hidden">
+      <%= text_field_tag :search, params[:search], class: "px-4 py-2 w-full placeholder-gray-400 focus:outline-none", placeholder: "Search stocks by symbol..." %>
+      <button type="submit" class="px-4 py-2 bg-blue-500 text-white hover:bg-blue-600">Search</button>
+    </div>
+  <% end %>
+</div>
