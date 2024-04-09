@@ -1,10 +1,6 @@
-<% if !@error%>
-    <h1><%= @quote.company_name %> (<%= @quote.symbol %>)</h1>
-    <p>Price: <%= @price %></p>
-    <p>Latest Price: <%= @quote.latest_price %></p>
-    <p>Change: <%= @quote.change %> (<%= @quote.change_percent %>)</p>
-
-    <% else %>
-    <p>No stock named <%=@search_keyword%> available</p>
-<% end %>
-
+<div class="shadow rounded p-4 mb-4">
+    <h1 class="text-xl font-bold mb-2"><%= @quote.company_name %> (<%= @quote.symbol %>)</h1>
+    <p class="mb-2">Price: <%= @price %></p>
+    <p class="mb-2">Latest Price: <%= @quote.latest_price %></p>
+    <p class="mb-2">Change: <%= @quote.change %> (<%= @quote.change_percent %>)</p>
+</div>

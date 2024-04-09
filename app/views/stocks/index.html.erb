@@ -1,8 +1,8 @@
-<h1>Search Stocks</h1>
-
-<%= form_tag(stocks_path, method: :get) do %>
-  <div class="field">
-    <%= text_field_tag :search, params[:search], placeholder: "Search stocks by symbol..." %>
-    <%= submit_tag "Search", class: "btn btn-primary" %>
-  </div>
-<% end %>
+<div class="my-8">
+  <%= form_tag(stocks_path, method: :get, class: "flex items-center") do %>
+    <div class="flex items-center border rounded-md overflow-hidden">
+      <%= text_field_tag :search, params[:search], class: "px-4 py-2 w-full placeholder-gray-400 focus:outline-none", placeholder: "Search stocks by symbol..." %>
+      <button type="submit" class="px-4 py-2 bg-blue-500 text-white hover:bg-blue-600">Search</button>
+    </div>
+  <% end %>
+</div>
