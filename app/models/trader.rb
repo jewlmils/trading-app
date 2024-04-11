@@ -7,6 +7,7 @@ class Trader < ApplicationRecord
    
   has_many :portfolios
   has_many :stock, through: :portfolios
+  has_many :transactions
 
   validates :first_name, presence: true
   validates :last_name, presence: true

@@ -27,4 +27,6 @@ class StocksController < ApplicationController
     puts "Symbol not found: #{keyword}"
     nil
   end
+
+  
 end
