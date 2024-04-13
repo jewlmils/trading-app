@@ -8,6 +8,12 @@
     border-radius: 40px;
   }
 
+  .center {
+    padding: 70px 0;
+    border: 3px solid green;
+    text-align: center;
+  }
+
   .txt-gradient {
     background-image: linear-gradient(
       43deg,
@@ -47,7 +53,7 @@
 
   .btn-secondary {
     text-decoration: none;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 0 0.5rem 0;
     font-size: 1rem;
     text-align: center;
     color: #d3cfdd;

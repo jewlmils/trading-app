@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
   
-  resources :stocks, only: [:index, :show]
+  # resources :stocks do
+  #   collection do
+  #     post :buy  # Route for the 'buy' action
+  #   end
+  # end
+  resources :stocks, only: [:index, :show] do
+    post 'transactions/buy', to: 'transactions#buy', on: :member
+  end
+  
 
   root 'pages#landing'
   

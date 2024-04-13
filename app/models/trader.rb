@@ -7,6 +7,7 @@ class Trader < ApplicationRecord
    
   has_many :portfolios
   has_many :stock, through: :portfolios
+  has_many :transactions
 
   validates :first_name, presence: true
   validates :last_name, presence: true
@@ -21,4 +22,11 @@ class Trader < ApplicationRecord
     super && approved?
   end 
   
+  def self.ransackable_associations(auth_object = nil)
+    ["id", "first_name", "last_name", "email"]
+  end
+
+  def self.ransackable_attributes(auth_object = nil)
+    %w[first_name last_name email]
+  end
 end

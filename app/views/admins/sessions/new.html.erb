@@ -1,5 +1,5 @@
-<div class="mx-auto max-w-7xl px-4 flex justify-center items-center h-screen">
-    <div class="sm:mx-auto sm:w-full sm:max-w-md ">
+<div class="mx-auto px-4 flex justify-center items-center h-screen">
+    <div class="sm:mx-auto sm:w-full sm:max-w-md">
         <div class="bg-gray21 py-8 px-4 shadow sm:rounded-lg sm:px-10"> 
             <div class="mb-4">
               <h2 class="text-center mt-0 text-white">
@@ -20,6 +20,9 @@
                 <%= f.submit "Submit", class: "w-full bg-gradient rounded-big focus:ring-4 focus:outline-none focus:ring-blue-300 text-white font-bold text-xl py-2.5 shadow-md shadow-gray-900/10" %>
              </div>
             <% end %>
+            <div class="text-sm text-center text-white pt-6">
+                Trader? <%= link_to "Login as Trader", new_trader_session_path, class: "txt-bg no-underline font-bold text-white hover:underline" %>
+            </div>
         </div>
         </div>
 </div>

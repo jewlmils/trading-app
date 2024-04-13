@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_07_154755) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_09_130111) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -69,6 +69,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_07_154755) do
     t.string "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
     t.boolean "admin_created", default: false, null: false
     t.index ["approved"], name: "index_traders_on_approved"
     t.index ["confirmation_token"], name: "index_traders_on_confirmation_token", unique: true
@@ -76,8 +77,25 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_07_154755) do
     t.index ["reset_password_token"], name: "index_traders_on_reset_password_token", unique: true
   end
 
+  create_table "transactions", force: :cascade do |t|
+    t.bigint "trader_id", null: false
+    t.bigint "stock_id", null: false
+    t.bigint "portfolio_id", null: false
+    t.string "transaction_type"
+    t.integer "number_of_shares"
+    t.decimal "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["portfolio_id"], name: "index_transactions_on_portfolio_id"
+    t.index ["stock_id"], name: "index_transactions_on_stock_id"
+    t.index ["trader_id"], name: "index_transactions_on_trader_id"
+  end
+
   add_foreign_key "portfolio_stocks", "portfolios"
   add_foreign_key "portfolio_stocks", "stocks"
   add_foreign_key "portfolios", "stocks"
   add_foreign_key "portfolios", "traders"
+  add_foreign_key "transactions", "portfolios"
+  add_foreign_key "transactions", "stocks"
+  add_foreign_key "transactions", "traders"
 end

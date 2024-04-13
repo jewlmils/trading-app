@@ -1,0 +1,8 @@
+<%= form_with(url: transactions_buy_stock_path(id: @quote.symbol), method: :post) do |f| %>
+  <div class="form-group">
+    <%= f.label :quantity, "Quantity" %>
+    <%= f.number_field :quantity, class: "form-control" %>
+  </div>
+
+  <%= f.submit "Buy Stock", class: "btn btn-primary" %>
+<% end %>

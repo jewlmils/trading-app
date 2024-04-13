@@ -1,4 +1,20 @@
-<h1 class="text-white">
-    Buy, Sell, and Trade with
-    <span class="txt-gradient">ease</span>
-</h1>
+<div class="mx-auto px-4 flex justify-center items-center h-screen">
+    <div class="sm:mx-auto sm:w-full sm:max-w-md">
+        <div class="text-center ">
+            <h1
+                class="text-5xl font-bold tracking-tight text-white dark:text-slate-200 sm:text-5xl md:text-6xl">
+                <span class="block xl:inline"><span class="mb-1 block">Trade smarter</span>
+                    <span class="text-white">
+                        with our cutting-edge
+                    <div class="mt-2">
+                    <span class="relative txt-gradient">trading app.</span>
+                    </span>
+                </div>
+                <div class="mt-2">
+                    <%= link_to 'Log in', new_trader_session_path, class: "btn-secondary" %>
+                    <%= link_to 'Sign up', new_trader_registration_path, class: "btn-main" %>
+                </div>
+            </h1>
+        </div>
+    </div>
+</div>

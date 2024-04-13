@@ -1,18 +1,12 @@
-<div class="mx-auto max-w-7xl px-4 py-12">
-  <div class="mx-auto max-w-4xl">
-
-      <div class="flex justify-between items-center" style="margin-top: 20px;">
-      <%= link_to 'Pending Traders', admin_pending_traders_path, class: 'text-white font-medium' %>
-      <h1 class="m-0 text-white">Approved Traders</h1>
-        <div>
-        <%= link_to new_admin_page_path, class: "btn-main bg-gradient" do %>
-        Create Trader
-        <i class="fas fa-plus"></i> 
-        <% end %>
+<div class="w-full px-8" style="height: calc(100vh - 64px);">
+<div class="mt-4">
+    <%= link_to new_admin_page_path, class: 'text-white' do %>
+        <div class="flex items-center gap-4 text-balance">
+          <h1 class="text-4xl font-bold">Traders</h1>
+          <i class="fa-solid fa-plus grid place-items-center text-xs hover:text-sky-200"></i>
         </div>
-      </div>
-          
-      <%= render 'traders_table' %>
-      <%== pagy_nav(@pagy) %>
-  </div>
+  <% end %>
+</div>
+
+<%= render 'traders_table' %>
 </div>
