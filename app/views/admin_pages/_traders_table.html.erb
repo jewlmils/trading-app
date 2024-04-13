@@ -1,16 +1,4 @@
-<nav class="border-slate-950 w-full flex items-center justify-between py-4">
-  <div>
-    <%= link_to 'Approved', admin_pages_path, class: 'btn-secondary mr-4' %>
-    <%= link_to 'Pending', admin_pending_traders_path, class: 'btn-secondary' %>
-    </div>
-
-    <%= search_form_for @q, url: admin_pages_path do |f| %>
-      <%= f.label :first_name_cont %>
-      <%= f.search_field :first_name_cont %>
-      <%= f.submit %>
-    <% end %>
-
-</nav>
+<%= render 'nav_links' %>
 
 <table class="w-full">
   <thead class="bg-black border-b">
