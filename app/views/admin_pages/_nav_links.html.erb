@@ -1,8 +1,9 @@
 <nav class="border-slate-950 w-full flex items-center justify-between py-4">
-  <div>
-    <%= link_to 'Approved', admin_pages_path, class: 'btn-secondary mr-4' %>
-    <%= link_to 'Pending', admin_pending_traders_path, class: 'btn-secondary' %>
-  </div>
+<div>
+  <%= link_to 'Approved', admin_pages_path, class: 'btn-secondary mr-4' %>
+  <%= link_to 'Pending', admin_pending_traders_path, class: 'btn-secondary' %>
+</div>
+
 
   <form class="pb-6"> 
   <%= search_form_for @q, url: admin_pages_path do |f| %>  

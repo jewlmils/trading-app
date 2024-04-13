@@ -1,6 +1,5 @@
-<h1>Welcome, <%= @trader.first_name %>!</h1>
-
-<h2>Trader Information:</h2>
+<div class="text-white">
+<h1 class="font-bold text-2xl">Trader Information</h1>
 <p>Name: <%= @trader.first_name %> <%= @trader.last_name %></p>
 <p>Email: <%= @trader.email %></p>
 <p>Wallet Balance: <%= @trader.wallet %></p>
@@ -24,7 +23,7 @@
   <p>No stocks in the portfolio.</p>
 <% end %>
 
-<h2>Transaction History:</h2>
+<h1 class="font-bold text-2xl">Transaction History:</h1>
 <% if @transactions.present? %>
   <table>
     <thead>
@@ -49,3 +48,4 @@
 <% else %>
   <p>No transaction history.</p>
 <% end %>
+</div>
