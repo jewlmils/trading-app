@@ -69,6 +69,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_09_130111) do
     t.string "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
     t.boolean "admin_created", default: false, null: false
     t.index ["approved"], name: "index_traders_on_approved"
     t.index ["confirmation_token"], name: "index_traders_on_confirmation_token", unique: true

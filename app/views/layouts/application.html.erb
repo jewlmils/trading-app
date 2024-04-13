@@ -11,9 +11,12 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="prose max-w-none h-screen bg-gray23 overflow-hidden">
-    <%= render 'layouts/header' %>
+  <body class="overflow-hidden bg-gray23">
+    <%= render 'shared/header' %>
+    <main class="flex">
+      <%= render 'shared/sidebar' %>
+      <%= yield %>
+    </main>
     <%= render partial: 'shared/notifications' %>
-    <%= yield %>
   </body>
 </html>

@@ -1,46 +1,42 @@
-<div> 
-    <div class="overflow-x-auto">
-      <div class="inline-block min-w-full rounded-big">
-        <div class="overflow-hidden">
-          <table class="min-w-full">
-            <thead class="bg-black border-b">
-              <tr>
-                <th scope="col" class="text-sm font-medium text-white px-6 py-4 text-left">
-                  ID
-                </th>
-                <th scope="col" class="text-sm font-medium text-white px-6 py-4 text-left">
-                  Name
-                </th>
-                <th scope="col" class="text-sm font-medium text-white px-6 py-4 text-left">
-                  Email
-                </th>
-                <th scope="col" class="text-sm font-medium text-white px-6 py-4 text-left flex justify-center">
-                  Action
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @traders.each do |trader| %>
-                <tr class="bg-gray21 border-b">
-                  <td class="text-sm text-white font-light px-6 py-4 whitespace-nowrap">
-                    <%= trader.id %>
-                  </td>
-                  <td>
-                    <%= link_to "#{trader.first_name} #{trader.last_name}", admin_page_path(trader.id), class: "text-sm text-white no-underline font-light px-6 py-4 whitespace-nowrap" %>
-                  </td>
-                  <td class="text-sm text-white font-light px-6 py-4 whitespace-nowrap">
-                    <%= trader.email %>
-                  </td>
-                  <td class="text-sm text-white font-light px-6 py-4 whitespace-nowrap flex justify-center">
-                    <%= link_to edit_admin_page_path(trader) do %>
-                    <i class="fas fa-edit text-white"></i>
-                    <% end %>
-                  </td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
+<table class="w-full">
+  <thead class="bg-black border-b">
+    <tr>
+      <th scope="col" class="text-sm font-medium text-white px-6 py-4 text-left">
+        ID
+      </th>
+      <th scope="col" class="text-sm font-medium text-white px-6 py-4 text-left">
+        Name
+      </th>
+      <th scope="col" class="text-sm font-medium text-white px-6 py-4 text-left">
+        Email
+      </th>
+      <th scope="col" class="text-sm font-medium text-white px-6 py-4 text-left flex justify-center">
+        Action
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @traders.each do |trader| %>
+    <tr class="bg-gray21 border-b">
+      <td class="text-sm text-white font-light px-6 py-4 whitespace-nowrap">
+        <%= trader.id %>
+      </td>
+      <td>
+        <%= link_to "#{trader.first_name} #{trader.last_name}", admin_page_path(trader.id), class: "text-sm text-white no-underline font-light px-6 py-4 whitespace-nowrap" %>
+      </td>
+      <td class="text-sm text-white font-light px-6 py-4 whitespace-nowrap">
+        <%= trader.email %>
+      </td>
+      <td class="text-sm text-white font-light px-6 py-4 whitespace-nowrap flex justify-center">
+        <%= link_to edit_admin_page_path(trader) do %>
+      <i class="fas fa-edit text-white"></i>
+        <% end %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="py-4">
+  <%== pagy_nav(@pagy) %>
 </div>
