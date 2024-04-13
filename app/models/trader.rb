@@ -22,4 +22,11 @@ class Trader < ApplicationRecord
     super && approved?
   end 
   
+  def self.ransackable_associations(auth_object = nil)
+    ["id", "first_name", "last_name", "email"]
+  end
+
+  def self.ransackable_attributes(auth_object = nil)
+    %w[first_name last_name email]
+  end
 end

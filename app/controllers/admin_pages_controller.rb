@@ -3,11 +3,13 @@ class AdminPagesController < ApplicationController
   before_action :set_trader, only: [:show, :edit, :update]
 
   def index
-    @pagy, @traders = pagy(Trader.where(approved: true).sorted)
+    @q = Trader.where(approved: true).ransack(params[:q])
+    @pagy, @traders = pagy(@q.result(distinct: true).sorted)
   end
-
+  
   def pending_traders
-    @pagy, @traders = pagy(Trader.where.not(confirmed_at: nil).where(approved: false))
+    @q = Trader.where.not(confirmed_at: nil).where(approved: false).ransack(params[:q])
+    @pagy, @traders = pagy(@q.result(distinct: true).sorted)
   end  
 
   def show
