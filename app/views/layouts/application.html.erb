@@ -12,9 +12,9 @@
   </head>
 
   <body class="overflow-hidden bg-gray23">
-    <%= render 'shared/header' %>
+    <%= render partial: 'shared/header' %>
     <main class="flex">
-      <%= render 'shared/sidebar' %>
+      <%= render partial: 'shared/sidebar' %>
       <%= yield %>
     </main>
     <%= render partial: 'shared/notifications' %>

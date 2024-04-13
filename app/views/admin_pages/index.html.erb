@@ -1,14 +1,12 @@
 <div class="w-full px-8">
-  <div class="flex justify-between items-center py-8 text-white gap-6">
-    <%= link_to 'Pending Traders', admin_pending_traders_path, class: 'btn-secondary' %>
-    <h1 class="text-4xl font-bold">Approved Traders</h1>
-    <div>
-      <%= link_to new_admin_page_path, class: "btn-main bg-gradient" do %>
-      Create Trader
-      <i class="fas fa-plus"></i> 
-      <% end %>
-    </div>
-  </div>
-          
+<div class="mt-4">
+    <%= link_to new_admin_page_path, class: 'text-white' do %>
+        <div class="flex items-center gap-4 text-balance">
+          <h1 class="text-4xl font-bold">Traders</h1>
+          <i class="fa-solid fa-plus grid place-items-center text-xs hover:text-sky-200"></i>
+        </div>
+  <% end %>
+</div>
+
 <%= render 'traders_table' %>
 </div>

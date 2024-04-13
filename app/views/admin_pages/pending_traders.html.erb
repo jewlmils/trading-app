@@ -1,7 +1,12 @@
 <div class="w-full px-8">
-  <div class="py-8 text-white">
-    <%= link_to 'Approved Traders', admin_pages_path, class: 'btn-secondary' %>
-    <h1 class="text-4xl mt-4 font-bold">Pending Traders</h1>
-  </div>
+<div class="mt-4">
+    <%= link_to new_admin_page_path, class: 'text-white' do %>
+        <div class="flex items-center gap-4 text-balance">
+          <h1 class="text-4xl font-bold">Traders</h1>
+          <i class="fa-solid fa-plus grid place-items-center text-xs hover:text-sky-200"></i>
+        </div>
+  <% end %>
+</div>
+
 <%= render 'traders_table' %>
 </div>
