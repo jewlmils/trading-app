@@ -1,4 +1,5 @@
 class StocksController < ApplicationController
+  before_action :authenticate_trader!
   before_action :set_client
 
   def index
@@ -16,7 +17,6 @@ class StocksController < ApplicationController
   def show
     @symbol = params[:id]
     @quote = @client.quote(@symbol)
-    @price = @client.price(@symbol)
   end
 
   private
@@ -24,9 +24,6 @@ class StocksController < ApplicationController
   def search_stocks(keyword)
     @client.quote(keyword)
   rescue IEX::Errors::SymbolNotFoundError => e
-    puts "Symbol not found: #{keyword}"
     nil
   end
-
-  
 end

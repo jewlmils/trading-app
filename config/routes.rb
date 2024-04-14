@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   resources :stocks, only: [:index, :show] do
     post 'transactions/buy', to: 'transactions#buy', on: :member
+    post 'transactions/sell', to: 'transactions#sell', on: :member
+
   end
   
   get 'admin/pending_traders', to: 'admin_pages#pending_traders'
