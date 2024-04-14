@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
-
-include Pagy::Backend
+    include Pagy::Backend
 
     def set_client
         iex_api_credentials = Rails.application.credentials.dig(:iex_api)
@@ -12,5 +11,3 @@ include Pagy::Backend
         )
     end
 end
-  
-
