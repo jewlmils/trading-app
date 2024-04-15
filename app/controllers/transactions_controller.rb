@@ -72,6 +72,7 @@ class TransactionsController < ApplicationController
     end
     
     portfolio = trader.portfolios.find_or_create_by(stock_id: stock.id)
+    portfolio_stock = PortfolioStock.find_or_create_by(portfolio_id: portfolio.id, stock_id: stock.id)
 
     if transaction_type == 'buy'
       portfolio.update!(number_of_shares: portfolio.number_of_shares + quantity.to_i)
