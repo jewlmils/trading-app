@@ -1,7 +1,9 @@
-<div class="shadow rounded p-4 mb-4">
-  <h1 class="text-xl font-bold mb-2"><%= @quote.company_name %> (<%= @quote.symbol %>)</h1>
-  <p class="mb-2">Price: <%= @price %></p>
-  <p class="mb-2">Latest Price: <%= @quote.latest_price %></p>
-  <p class="mb-2">Change: <%= @quote.change %> (<%= @quote.change_percent %>)</p>
+<div class="text-white">
+  <div class="shadow rounded p-4 mb-4">
+    <h1 class="text-xl font-bold mb-2"><%= @quote.company_name %> (<%= @quote.symbol %>)</h1>
+    <p class="mb-2">Latest Price: <%= @quote.latest_price %></p>
+    <p class="mb-2">Change: <%= @quote.change %> (<%= @quote.change_percent %>)</p>
+  </div>
+  <%= render 'transactions/buy', id: @quote.symbol %>
+  <%= render 'transactions/sell', id: @quote.symbol %>
 </div>
-<%= render 'transactions/buy', id: @quote.symbol %>

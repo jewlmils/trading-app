@@ -1,21 +1,32 @@
+<<<<<<< HEAD
 <div class="text-white">
 <h1 class="font-bold text-2xl">Trader Information</h1>
 <p>Name: <%= @trader.first_name %> <%= @trader.last_name %></p>
 <p>Email: <%= @trader.email %></p>
+=======
+<h1>Welcome, <%= @trader.first_name %>!</h1>
+>>>>>>> e409900 (refactor: update associations in portfolio and stock models, streamline transactions controller, and optimize queries traderPages controller)
 <p>Wallet Balance: <%= @trader.wallet %></p>
 
 <h2>Portfolio:</h2>
-<% if @portfolio.present? %>
+<% if @portfolios.present? %>
   <table>
     <thead>
       <tr>
         <th>Stock</th>
-        <th>Number of Shares</th>
+        <th>Shares</th>
       </tr>
     </thead>
     <tbody>
-      <% portfolio.stocks.each do |stock| %>
-        <li><%= stock.company_name %>: <%= stock.number_of_shares %> shares</li>
+      <% @portfolios.each do |portfolio| %>
+        <% portfolio.stocks.each do |stock| %>
+          <tr>
+            <td><%= stock.company_name %> (<%= stock.ticker_symbol %>)</td>
+            <td><%= portfolio.number_of_shares %></td>
+            <td><%= link_to "Buy", stock_path(id: stock.ticker_symbol), class: "btn btn-primary" %></td>
+            <td><%= link_to "Sell", stock_path(id: stock.ticker_symbol), class: "btn btn-primary" %></td>
+          </tr>
+        <% end %>
       <% end %>
     </tbody>
   </table>
