@@ -1,0 +1,29 @@
+  <div class = "text-white">
+  <h2>Portfolio:</h2>
+  <% if @portfolios.present? %>
+    <table>
+      <thead>
+        <tr>
+          <th>Stock</th>
+          <th>Shares</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @portfolios.each do |portfolio| %>
+          <% portfolio.stocks.each do |stock| %>
+            <tr>
+              <td><%= stock.company_name %> (<%= stock.ticker_symbol %>)</td>
+              <td><%= portfolio.number_of_shares %></td>
+              <td><%= @quotes[stock.ticker_symbol]&.latest_price || 'N/A' %></td>
+              <td><%= link_to "Buy", stock_path(id: stock.ticker_symbol), class: "btn btn-primary" %></td>
+              <td><%= link_to "Sell", stock_path(id: stock.ticker_symbol), class: "btn btn-primary" %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p>No stocks in the portfolio.</p>
+  <% end %>
+  </div>
