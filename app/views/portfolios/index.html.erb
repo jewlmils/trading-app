@@ -1,0 +1,20 @@
+<h1>Portfolios</h1>
+
+<p>Total Portfolio Value: <%= number_to_currency(@total_portfolio_value) %></p>
+<p>Cash Balance: <%= number_to_currency(@cash_balance) %></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Portfolio</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @portfolios.each do |portfolio| %>
+    <tr>
+      <td><%= link_to portfolio.stocks.first.ticker_symbol, portfolio_path(portfolio) %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
