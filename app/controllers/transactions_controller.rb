@@ -2,6 +2,17 @@ class TransactionsController < ApplicationController
   before_action :authenticate_trader!
   before_action :set_client
 
+  def index
+    @transactions = current_trader.transactions.order(created_at: :desc)
+    puts "Search params: #{params[:search]}" # Add this line for debugging
+    if params[:search].present?
+      @transactions = @transactions.joins(:stock).where("stocks.company_name ILIKE ?", "%#{params[:search]}%")
+    end
+    @portfolio = current_trader.portfolios
+    @cash_balance = current_trader.wallet
+    puts "@transactions count: #{@transactions.count}"
+  end
+
   def buy
     @trader = current_trader
     @symbol = params[:id]
