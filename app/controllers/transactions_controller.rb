@@ -1,5 +1,5 @@
 class TransactionsController < ApplicationController
-  before_action :authenticate_trader!
+  before_action :require_trader
   before_action :set_client
 
   def index
@@ -123,6 +123,12 @@ class TransactionsController < ApplicationController
     flash[:alert] = 'Failed to retrieve stock information from the IEX API.'
 
     redirect_to stocks_path
+  end
+
+  private
+
+  def require_trader
+    redirect_to root_path, alert: "You are not authorized to access this page." unless trader_signed_in?
   end
 
 end

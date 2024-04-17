@@ -1,25 +1,25 @@
-<div class="mx-auto max-w-7xl flex justify-center items-center h-screen">
-    <div class="sm:mx-auto sm:w-full sm:max-w-md ">
-        <div class="bg-gray21 py-8 px-4 shadow sm:rounded-lg sm:px-10"> 
-            <div class="mb-4">
-                <h1 class="m-0 text-center font-bold tracking-tight text-5xl text-white">Trader Profile</h1>
-                <p class="text-center mt-2 text-white">This is some information about the trader.</p>
-            </div>
-            <div class="mb-2">
-                <p class="text-white">Full name:
-                    <span class="text-white font-bold mt-0"><%= @trader.first_name %> <%= @trader.last_name %></span>
-                </p>
-            </div>
-             <div class="mb-2">
-                <p class="text-white">Email address:
-                    <span class="text-white font-bold mt-0"><%= @trader.email %></span>
-                </p>
-            </div>
-             <div>
-                <p class="text-white">Activated: 
-                    <span class="text-white font-bold mt-0"><%= @trader.approved? %></span>
-                </p>
-            </div>
-        </div>
-        </div>
+<div class="py-8 px-4 shadow sm:rounded-lg sm:px-10"> 
+    <div class="mb-4">
+        <h1 class="m-0 font-bold tracking-tight text-5xl text-white">Trader Profile</h1>
+        <p class="mt-2 text-white">This is some information about the trader.</p>
+    </div>
+    <div class="mb-2">
+        <p class="text-white">Full name:
+        <span class="text-white font-bold mt-0"><%= @trader.first_name %> <%= @trader.last_name %></span>
+        </p>
+    </div>
+    <div class="mb-2">
+        <p class="text-white">Email address:
+        <span class="text-white font-bold mt-0"><%= @trader.email %></span>
+        </p>
+    </div>
+    <div>
+        <p class="text-white">Activated: 
+        <span class="text-white font-bold mt-0"><%= @trader.approved? %></span>
+        </p>
+    </div>
+    <div class="my-4">
+        <h1 class="m-0 font-bold tracking-tight text-5xl text-white">Transaction History:</h1>
+        <p class="mt-2 text-white">This is some information about the trader's transaction history.</p>
+    </div>
 </div>

@@ -10,7 +10,11 @@ class AdminPagesController < ApplicationController
   def pending_traders
     @q = Trader.where.not(confirmed_at: nil).where(approved: false).ransack(params[:q])
     @pagy, @traders = pagy(@q.result(distinct: true).sorted)
-  end  
+  end
+
+  def transaction
+    @transaction = Transaction.all
+  end
 
   def show
   end
