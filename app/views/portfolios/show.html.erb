@@ -6,7 +6,7 @@
 <% end %>
 
 <p class="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">
-  Total Value: <%= number_to_currency(@total_portfolio_value) %>
+  Total Value: <%= number_to_currency(@single_stock_portfolio_value) %>
 </p>
 
 <% if @performance_metrics.present? && @performance_metrics.is_a?(Hash) && @performance_metrics[:roi].present? %>
