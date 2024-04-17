@@ -20,6 +20,53 @@
     </div>
     <div class="my-4">
         <h1 class="m-0 font-bold tracking-tight text-5xl text-white">Transaction History:</h1>
-        <p class="mt-2 text-white">This is some information about the trader's transaction history.</p>
     </div>
+
+<% if @transaction.present? %>
+    <table class="w-full">
+    <thead class="bg-black border-b">
+        <tr>
+        <th scope="col" class="text-sm font-medium text-white px-6 py-4 text-left">
+            Stock
+        </th>
+        <th scope="col" class="text-sm font-medium text-white px-6 py-4 text-left">
+            Transaction Type
+        </th>
+        <th scope="col" class="text-sm font-medium text-white px-6 py-4 text-left">
+            Number of Shares
+        </th>
+        <th scope="col" class="text-sm font-medium text-white px-6 py-4 text-left">
+            Price
+        </th>
+        <th scope="col" class="text-sm font-medium text-white px-6 py-4 text-left">
+            Date
+        </th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @transaction.each do |t| %>
+        <tr class="bg-gray21 border-b">
+        <td class="text-sm text-white font-light px-6 py-4 whitespace-nowrap">
+            <%= t.stock.ticker_symbol %> - <%= t.stock.company_name %>
+        </td>
+        <td class="text-sm text-white font-light px-6 py-4 whitespace-nowrap">
+            <%= t.transaction_type %>
+        </td>
+        <td class="text-sm text-white font-light px-6 py-4 whitespace-nowrap">
+            <%= t.number_of_shares %>
+        </td>
+        <td class="text-sm text-white font-light px-6 py-4 whitespace-nowrap">
+            <%= number_to_currency(t.price) %>
+        </td>
+        <td class="text-sm text-white font-light px-6 py-4 whitespace-nowrap">
+            <%= t.created_at.strftime("%Y-%m-%d") %>
+        </td>
+        </tr>
+        <% end %>
+    </tbody>
+    </table>
+    <% else %>
+    <p class="text-white">There are currently no transactions on record.</p>
+<% end %>
 </div>
+

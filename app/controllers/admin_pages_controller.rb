@@ -12,11 +12,13 @@ class AdminPagesController < ApplicationController
     @pagy, @traders = pagy(@q.result(distinct: true).sorted)
   end
 
-  def transaction
-    @transaction = Transaction.all
+  def transactions
+    @transactions = Transaction.all
   end
 
   def show
+    @trader = Trader.find(params[:id])
+    @transaction = @trader.transactions
   end
 
   def new
