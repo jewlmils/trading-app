@@ -6,5 +6,6 @@ class TraderPagesController < ApplicationController
         @trader = current_trader
         @portfolios = @trader.portfolios
         @stocks = @portfolios.flat_map(&:stocks)
+        @transactions = @trader.transactions
     end
 end
