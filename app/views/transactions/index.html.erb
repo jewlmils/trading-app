@@ -1,18 +1,16 @@
-
-
+<div class="text-white">
 <h1>Transactions</h1>
-
 <p>Cash Balance: <%= number_to_currency(@cash_balance) %></p>
 
 <%= form_tag transactions_path, method: :get do %>
-  <%= text_field_tag :search, params[:search], placeholder: "Search for a stock..." %>
-  <%= submit_tag "Search", class: "btn btn-primary" %>
+  <%= text_field_tag :search, params[:search], placeholder: "Search for a stock...", class: 'text-black' %>
+  <%= submit_tag "Search", class: "btn-main" %>
 <% end %>
 
 <div id="search-results">
  <% if @transactions.present? %>
 <table>
-  <thead>
+  <thead>  
     <tr>
         <th>Stock</th>
         <th>Transaction Type</th>
@@ -38,5 +36,7 @@
   <% end %>
   </div>
 
-<%= link_to "Buy Stock", stocks_path %>
-<%= link_to "Sell Stock", stocks_path %>
+<%= link_to "Buy Stock", stocks_path, class: 'btn-main' %>
+<%= link_to "Sell Stock", stocks_path, class: 'btn-main' %>
+
+</div>

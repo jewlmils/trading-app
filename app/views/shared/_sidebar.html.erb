@@ -1,14 +1,36 @@
-<% if current_admin.present? %>
+<% if current_trader.present? || current_admin.present? %>
 <nav class="flex">
-  <div class="w-64 p-4 bg-gray24 sticky top-0" style="height: calc(100vh - 64px);">
-    <ul class="flex-col text-white">
-      <li>
-        <%= link_to admin_pages_path, class: 'block px-4 py-2 hover:rounded hover:bg-gray-700' do %>
-          <i class="fa-solid fa-list mr-2"></i>
-          <span class="md:inline-block">Traders</span>
+    <div class="w-64 p-4 bg-gray24 sticky top-0" style="height: calc(100vh - 64px);">
+      <ul class="flex-col text-white">
+        <% if current_admin.present? %>
+        <li>
+          <%= link_to admin_pages_path, class: 'block px-4 py-2 hover:rounded hover:bg-gray-700' do %>
+            <i class="fa-solid fa-list mr-2"></i>
+            <span class="md:inline-block">Traders</span>
+          <% end %>
+        </li>
+        <% elsif current_trader.present? %>
+        <li>
+          <%= link_to trader_trader_dashboard_path, class: 'block px-4 py-2 hover:rounded hover:bg-gray-700' do %>
+            <i class="fa-solid fa-list mr-2"></i>
+            <span class="md:inline-block">Dashboard</span>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to portfolios_path, class: 'block px-4 py-2 hover:rounded hover:bg-gray-700' do %>
+            <i class="fa-solid fa-list mr-2"></i>
+            <span class="md:inline-block">Portfolio</span>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to transactions_path, class: 'block px-4 py-2 hover:rounded hover:bg-gray-700' do %>
+            <i class="fa-solid fa-list mr-2"></i>
+            <span class="md:inline-block">Transaction</span>
+          <% end %>
+        </li>
         <% end %>
-      </li>
-    </ul>
-  </div>
+      </ul>
+    </div>
 </nav>
 <% end %>
+  
