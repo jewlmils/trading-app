@@ -6,3 +6,17 @@
     </div>
   <% end %>
 </div>
+
+<h2>Major Stocks</h2>
+<ul>
+  <% @major_stocks.each do |major_stock| %>
+    <li>
+      <%= link_to "#{major_stock[:name]} (#{major_stock[:symbol]})", stock_path(major_stock[:symbol]) %>
+      <% if major_stock[:price] %>
+        <span><%= number_to_currency(major_stock[:price]) %></span>
+      <% else %>
+        <span>Price not available</span>
+      <% end %>
+    </li>
+  <% end %>
+</ul>

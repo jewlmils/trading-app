@@ -3,6 +3,7 @@ class StocksController < ApplicationController
   before_action :set_client
 
   def index
+    @major_stocks = fetch_major_stocks
     if params[:search]
       @search_keyword = params[:search]
       @quote = search_stocks(@search_keyword)
@@ -20,6 +21,26 @@ class StocksController < ApplicationController
   end
 
   private
+
+  def fetch_major_stocks
+    major_stocks = [
+      { symbol: 'AAPL', name: 'Apple Inc.' },
+      { symbol: 'SBUX', name: 'Starbucks Corp.' },
+      { symbol: 'AMZN', name: 'Amazon.com Inc.' },
+      { symbol: 'GOOGL', name: 'Alphabet Inc.' },
+      { symbol: 'BA', name: 'Boeing Co.' },
+      { symbol: 'NKE', name: 'Nike, Inc.' },
+      { symbol: 'BRK.B', name: 'Berkshire Hathaway Inc.' },
+      { symbol: 'HD', name: 'Home Depot, Inc.' }
+    ]
+
+    major_stocks.each do |stock|
+      quote = @client.quote(stock[:symbol])
+      stock[:price] = quote.latest_price if quote.present?
+    end
+
+    major_stocks
+  end
 
   def search_stocks(keyword)
     @client.quote(keyword)
