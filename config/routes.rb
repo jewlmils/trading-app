@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   get 'admin/transactions', to: 'admin_pages#transactions'
   resources :admin_pages, path: 'admin', as: 'admin_pages'
   get 'trader/trader_dashboard', to: 'trader_pages#show'
+  post 'trader/trader_dashboard', to: 'trader_pages#deposit'
+
 
   devise_for :admins,  controllers: {
     sessions: 'admins/sessions',
