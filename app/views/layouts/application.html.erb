@@ -11,12 +11,13 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class=" bg-gray23 overflow-hidden">
-    <%= render partial: 'shared/header' %>
+  <body class="bg-darkdark overflow-hidden">
+    <%#= render partial: 'shared/header' %>
     <main class="flex">
       <%= render partial: 'shared/sidebar' %>
       <%= yield %>
     </main>
+    <%= render partial: 'shared/header' %>
     <%= render partial: 'shared/notifications' %>
   </body>
 </html>

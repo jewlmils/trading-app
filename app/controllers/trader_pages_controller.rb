@@ -1,5 +1,5 @@
 class TraderPagesController < ApplicationController
-    before_action :authenticate_trader!
+    before_action :require_trader
     before_action :set_client
 
     def show
@@ -18,5 +18,11 @@ class TraderPagesController < ApplicationController
     
         current_trader.update(wallet: current_trader.wallet + deposit_amount)
         redirect_to root_path, notice: 'Deposit successful!'
+    end
+  
+  private
+    
+    def require_trader
+        redirect_to root_path, alert: "You are not authorized to access this page." unless trader_signed_in?
     end
 end

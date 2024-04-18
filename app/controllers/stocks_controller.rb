@@ -1,5 +1,5 @@
 class StocksController < ApplicationController
-  before_action :authenticate_trader!
+  before_action :require_trader
   before_action :set_client
 
   def index
@@ -26,4 +26,9 @@ class StocksController < ApplicationController
   rescue IEX::Errors::SymbolNotFoundError => e
     nil
   end
+
+  def require_trader
+    redirect_to root_path, alert: "You are not authorized to access this page." unless trader_signed_in?
+  end
+  
 end

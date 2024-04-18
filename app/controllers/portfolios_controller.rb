@@ -1,5 +1,5 @@
 class PortfoliosController < ApplicationController
-  before_action :authenticate_trader!
+  before_action :require_trader
   before_action :set_client
 
   def index
@@ -87,4 +87,11 @@ class PortfoliosController < ApplicationController
       stock.update(price: quote.latest_price)
     end
   end
+
+  private
+
+  def require_trader
+    redirect_to root_path, alert: "You are not authorized to access this page." unless trader_signed_in?
+  end
+  
 end
