@@ -6,7 +6,7 @@ class TransactionsController < ApplicationController
     @transactions = current_trader.transactions.order(created_at: :desc)
     puts "Search params: #{params[:search]}" # Add this line for debugging
     if params[:search].present?
-      @transactions = @transactions.joins(:stock).where("stocks.company_name ILIKE ?", "%#{params[:search]}%")
+      @transactions = @transactions.joins(:stock).where("stocks.company_name ILIKE :search_start OR stocks.ticker_symbol ILIKE :search_start", search_start: "#{params[:search]}%")
     end
     @portfolio = current_trader.portfolios
     @cash_balance = current_trader.wallet
