@@ -4,8 +4,9 @@ class PortfoliosController < ApplicationController
 
   def index
     @portfolios = current_trader.portfolios
-    @total_portfolio_value = calculate_total_portfolio_value(@portfolios)
+    @total_portfolio_value = Portfolio.calculate_total_portfolio_value(@portfolios)
     @cash_balance = current_trader.wallet
+    @portfolio_total_value_by_day = Portfolio.cumulative_total_value_by_day
     @quotes = {}
 
     @portfolios.each do |portfolio|
@@ -20,7 +21,7 @@ class PortfoliosController < ApplicationController
   def show
     @portfolio = current_trader.portfolios.find(params[:id])
     @stocks = @portfolio.stocks
-    @single_stock_portfolio_value = calculate_single_stock_portfolio_value(@portfolio)
+    @single_stock_portfolio_value = Portfolio.calculate_single_stock_portfolio_value(@portfolio)
     @transactions = @portfolio.transactions.order(created_at: :desc)
     @performance_metrics = calculate_performance_metrics(@portfolio)
     @asset_allocation = calculate_asset_allocation(@portfolio)
@@ -29,28 +30,6 @@ class PortfoliosController < ApplicationController
   end
 
   private
-
-  def calculate_total_portfolio_value(portfolios)
-    total_value = 0
-  
-    portfolios.each do |portfolio|
-      portfolio.stocks.each do |stock|
-        total_value += stock.price * portfolio.number_of_shares
-      end
-    end
-  
-    total_value
-  end
-
-  def calculate_single_stock_portfolio_value(portfolio)
-    total_value = 0
-
-    portfolio.stocks.each do |stock|
-      total_value = stock.price * portfolio.number_of_shares
-    end
-  
-    total_value
-  end
 
   def calculate_performance_metrics(portfolio)
     total_investment = portfolio.transactions.where(transaction_type: 'buy').sum(&:price)
@@ -66,7 +45,7 @@ class PortfoliosController < ApplicationController
   end
   
   def calculate_asset_allocation(portfolio)
-    total_portfolio_value = calculate_single_stock_portfolio_value(portfolio)
+    total_portfolio_value = Portfolio.calculate_single_stock_portfolio_value(portfolio)
     asset_allocation = {}
   
     portfolio.stocks.each do |stock|
@@ -87,8 +66,6 @@ class PortfoliosController < ApplicationController
       stock.update(price: quote.latest_price)
     end
   end
-
-  private
 
   def require_trader
     redirect_to root_path, alert: "You are not authorized to access this page." unless trader_signed_in?

@@ -1,0 +1,2 @@
+<h2>Portfolio Total Value</h2>
+<%= line_chart @portfolio_total_value_by_day, library: { scales: { yAxes: [{ ticks: { callback: "function(value) { return '$' + value; }" } }] } } %>

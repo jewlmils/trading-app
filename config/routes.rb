@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :posts
   root 'pages#landing'
 
   resources :portfolios
