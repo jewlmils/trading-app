@@ -75,3 +75,6 @@ gem "tailwindcss-rails", "~> 2.3"
 gem "pagy", "~> 8.0"
 
 gem 'ransack'
+gem "chartkick", "~> 5.0"
+
+gem "groupdate", "~> 6.4"

@@ -1,6 +1,8 @@
 import "@fortawesome/fontawesome-free";
 import "@hotwired/turbo-rails";
 import "controllers";
+import "chartkick";
+import "Chart.bundle";
 
 document.addEventListener("turbolinks:load", function () {
   const dropdownToggle = document.querySelector(
