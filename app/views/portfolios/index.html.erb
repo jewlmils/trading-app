@@ -3,6 +3,10 @@
 <p class="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-8 xl:px-24 dark:text-gray-400">Total Portfolio Value: <%= number_to_currency(@total_portfolio_value) %></p>
 <p class="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-8 xl:px-24 dark:text-gray-400">Wallet: <%= number_to_currency(@cash_balance) %></p>
 
+<div id="portfolio-chart">
+  <%= render 'portfolio_chart' %>
+</div>
+
 <div class="py-4 border-t border-gray-200 dark:border-gray-600 max-h-[500px] overflow-y-auto">
   <% if @portfolios.empty? %>
     <p class="text-gray-500 dark:text-gray-400">
