@@ -29,7 +29,7 @@ class Portfolio < ActiveRecord::Base
   end
 
   def self.total_value_by_day
-    joins(stocks: :portfolio_stocks)
+    joins(:stocks)
       .group("DATE(portfolios.created_at)")
       .sum("stocks.price * portfolios.number_of_shares")
   end

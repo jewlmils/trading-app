@@ -5,6 +5,12 @@
   </h1>
 <% end %>
 
+<ul class="max-w-md space-y-1 text-gray-500 list-disc list-inside dark:text-gray-400">
+  <% @asset_allocation.each do |ticker_symbol, allocation| %>
+    <li><%= ticker_symbol %>: <%= number_to_percentage(allocation, precision: 2) %></li>
+  <% end %>
+</ul>
+
 <p class="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">
   Total Value: <%= number_to_currency(@single_stock_portfolio_value) %>
 </p>
@@ -75,9 +81,5 @@
 <h2 class="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">
   Asset Allocation
 </h2>
-<ul class="max-w-md space-y-1 text-gray-500 list-disc list-inside dark:text-gray-400">
-  <% @asset_allocation.each do |ticker_symbol, allocation| %>
-    <li><%= ticker_symbol %>: <%= number_to_percentage(allocation * 100, precision: 2) %></li>
-  <% end %>
-</ul>
+
 </div>
