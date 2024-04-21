@@ -1,7 +1,7 @@
 <%= form_tag(trader_trader_dashboard_path, method: :post) do %>
   <div class="field">
     <%= label_tag 'amount', 'Deposit Amount' %>
-    <%= number_field_tag 'amount', nil, step: "0.01" %>
+    <%= number_field_tag 'amount', nil, step: "0.01" , class: 'text-black'%>
   </div>
 
   <div class="actions">

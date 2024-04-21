@@ -64,7 +64,7 @@
     background-color: none;
 
     &:hover {
-      color: #fff;
+      color: #5b1bd2;
       text-decoration: underline;
       text-underline-offset: 0.5rem;
     }

@@ -7,12 +7,15 @@
                     <span class="text-white">
                         with our cutting-edge
                     <div class="mt-2">
-                    <span class="relative txt-gradient">trading app.</span>
+                    <span class="relative txt-gradient">TradeXpert.</span>
                     </span>
                 </div>
-                <div class="mt-2">
+                <div class="flex justify-evenly mt-8">
                     <%= link_to 'Log in', new_trader_session_path, class: "btn-secondary" %>
-                    <%= link_to 'Sign up', new_trader_registration_path, class: "btn-main" %>
+                    <%= link_to new_trader_registration_path, class: "btn-main" do %>
+                        <span>Sign up</span>
+                        <i class="fa-solid fa-arrow-right ml-4"></i>
+                    <% end %>
                 </div>
             </h1>
         </div>

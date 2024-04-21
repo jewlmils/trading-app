@@ -39,23 +39,16 @@ class TransactionsController < ApplicationController
     @symbol = params[:id]
     @quote = @client.quote(@symbol)
     @quantity = params[:quantity].to_i
-  
     portfolio = @trader.portfolios.find_by(stock_id: Stock.find_by(ticker_symbol: @symbol)&.id)
-
-    if portfolio.nil? || portfolio.number_of_shares <= @quantity
-      flash[:alert] = "You don't have enough shares to sell."
-
-      redirect_to stock_path
-    end
-  
+      if portfolio.nil? || portfolio.number_of_shares <= @quantity
+        flash[:alert] = "You don't have enough shares to sell."
+        redirect_to stock_path
+      end
     @total_price = @quantity * @quote.latest_price
-  
     execute_transaction(@trader, @symbol, @quantity, 'sell', @total_price)
-  
     flash[:notice] = 'Stock sold successfully.'
-
     redirect_to stock_path
-
+    
     rescue IEX::Errors::SymbolNotFoundError => e
       handle_error
   end
