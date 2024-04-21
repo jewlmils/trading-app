@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_11_103833) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_20_064536) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -43,6 +43,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_11_103833) do
     t.datetime "updated_at", null: false
     t.index ["stock_id"], name: "index_portfolios_on_stock_id"
     t.index ["trader_id"], name: "index_portfolios_on_trader_id"
+  end
+
+  create_table "stock_prices", force: :cascade do |t|
+    t.date "date"
+    t.decimal "close_price"
+    t.decimal "current_price"
+    t.bigint "stock_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["stock_id"], name: "index_stock_prices_on_stock_id"
   end
 
   create_table "stocks", force: :cascade do |t|
@@ -94,6 +104,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_11_103833) do
   add_foreign_key "portfolio_stocks", "stocks"
   add_foreign_key "portfolios", "stocks"
   add_foreign_key "portfolios", "traders"
+  add_foreign_key "stock_prices", "stocks"
   add_foreign_key "transactions", "portfolios"
   add_foreign_key "transactions", "stocks"
   add_foreign_key "transactions", "traders"

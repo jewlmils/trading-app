@@ -35,7 +35,7 @@ class Portfolio < ActiveRecord::Base
   end
 
   def self.cumulative_total_value_by_day
-    date_series = (Stock.minimum(:created_at).to_date..Stock.maximum(:created_at).to_date).to_a
+    date_series = (Stock.minimum(:created_at).to_date..Stock.maximum(:updated_at).to_date).to_a
     total_value = 0
     cumulative_values = {}
 
