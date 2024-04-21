@@ -11,7 +11,11 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="bg-darkdark overflow-hidden">
+  <body class="bg-darkdark h-screen overflow-hidden relative">
+    <% if current_trader.blank? && current_admin.blank? %>
+    <div class="circlePosition w-[590px] h-[400px] bg-[#eb26fd] rounded-[100%] absolute z-1 blur-[250px] bottom-0 right-0">
+    </div>
+    <% end %>
     <main class="flex">
       <%= render partial: 'shared/sidebar' %>
       <%= yield %>
