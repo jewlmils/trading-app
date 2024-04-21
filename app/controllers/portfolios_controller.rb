@@ -16,6 +16,7 @@ class PortfoliosController < ApplicationController
     end
     
     fetch_realtime_data_for_stocks(@portfolios)
+    StockPrice.update_stock_prices_for_today(@client)
   end
 
   def show
