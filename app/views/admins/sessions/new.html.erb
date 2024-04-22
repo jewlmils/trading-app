@@ -1,28 +1,24 @@
 <div class="mx-auto px-4 flex justify-center items-center h-screen">
     <div class="sm:mx-auto sm:w-full sm:max-w-md">
-        <div class="bg-lightdark py-8 px-4 shadow sm:rounded-lg sm:px-10"> 
-            <div class="mb-4">
-              <h2 class="text-center mt-0 text-white">
-                Login to your Admin Account
-              </h2>
+        <div class="bg-gray-400 p-8 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100"> 
+            <div class="mb-4 text-center">
+              <span class="text-5xl font-bold txt-gradient">TradeXpert</span>
+              <h4 class="mt-2 text-white"> Login to your Admin Account </h4>
             </div>
             <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
             <%= render "devise/shared/error_messages", resource: resource %>
             <div class="mb-4">
-                 <%= f.label :email, class: "block text-sm font-medium text-white" %>
-                <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "name@email.com", class: "mt-1 p-2 w-full rounded-md border border-gray-300 shadow-md shadow-gray-900/10 "%>
+                <%= f.label :email, class: "block text-sm font-medium text-white" %>
+                <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "name@email.com", class: "mt-1 p-2 w-full rounded-md border border-gray-300 shadow-md shadow-gray-900/10 md:w-96"%>
             </div>
              <div class="mb-4">
                 <%= f.label :password, class: "block text-sm font-medium text-white" %>
-                <%= f.password_field :password, autocomplete: "current-password", class: "mt-1 p-2 w-full rounded-md border border-gray-300 shadow-md shadow-gray-900/10 " %>
+                <%= f.password_field :password, autocomplete: "current-password", class: "mt-1 p-2 w-full rounded-md border border-gray-300 shadow-md shadow-gray-900/10 md:w-96" %>
             </div>
              <div class="mb-4 pt-2">
                 <%= f.submit "Submit", class: "w-full bg-gradient rounded-big focus:ring-4 focus:outline-none focus:ring-blue-300 text-white font-bold text-xl py-2.5 shadow-md shadow-gray-900/10" %>
              </div>
             <% end %>
-            <div class="text-sm text-center text-white pt-6">
-                Trader? <%= link_to "Login as Trader", new_trader_session_path, class: "txt-bg no-underline font-bold text-white hover:underline" %>
-            </div>
         </div>
         </div>
 </div>

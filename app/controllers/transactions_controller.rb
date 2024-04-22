@@ -1,12 +1,13 @@
 class TransactionsController < ApplicationController
   before_action :require_trader
-  before_action :set_client
+  before_action :set_client                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
 
   def index
     @transactions = current_trader.transactions.order(created_at: :desc)
     if params[:search].present?
       @transactions = @transactions.joins(:stock).where("stocks.company_name ILIKE :search_start OR stocks.ticker_symbol ILIKE :search_start", search_start: "#{params[:search]}%")
     end
+
     @portfolio = current_trader.portfolios
     @cash_balance = current_trader.wallet
   end

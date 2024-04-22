@@ -1,48 +1,41 @@
-<div class="py-4">
-<% if @transactions.present? %>
-<table class="w-full">
-  <thead class="bg-black border-b">
-    <tr>
-      <th scope="col" class="text-sm font-medium text-white px-6 py-4 text-left">
-        Stock
-      </th>
-      <th scope="col" class="text-sm font-medium text-white px-6 py-4 text-left">
-        Transaction Type
-      </th>
-      <th scope="col" class="text-sm font-medium text-white px-6 py-4 text-left">
-        Number of Shares
-      </th>
-      <th scope="col" class="text-sm font-medium text-white px-6 py-4 text-left">
-        Price
-      </th>
-      <th scope="col" class="text-sm font-medium text-white px-6 py-4 text-left">
-        Date
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @transactions.each do |transaction| %>
-    <tr class="bg-lightdark border-b">
-      <td class="text-sm text-white font-light px-6 py-4 whitespace-nowrap">
-        <%= transaction.stock.ticker_symbol %> - <%= transaction.stock.company_name %>
-      </td>
-      <td class="text-sm text-white font-light px-6 py-4 whitespace-nowrap">
-        <%= transaction.transaction_type %>
-      </td>
-      <td class="text-sm text-white font-light px-6 py-4 whitespace-nowrap">
-        <%= transaction.number_of_shares %>
-      </td>
-      <td class="text-sm text-white font-light px-6 py-4 whitespace-nowrap">
-        <%= number_to_currency(transaction.price) %>
-      </td>
-      <td class="text-sm text-white font-light px-6 py-4 whitespace-nowrap">
-        <%= transaction.created_at.strftime("%Y-%m-%d") %>
-      </td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
-<% else %>
-    <p>There are currently no transactions on record.</p>
-<% end %>
+<div class="mt-12">
+    <div class="relative overflow-x-auto bg-lightdark shadow-md sm:rounded-lg">
+        <%= render 'nav_links' %>
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-lightdark">
+                <tr class="border-b border-gray-500">
+                    <th scope="col" class="px-6 py-3">
+                        Stock
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Transaction Type
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Price
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Date
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+            <% @transactions.each do |transaction| %>
+                <tr class="border-b border-gray-500 bg-lightdark">
+                    <th scope="row" class="px-6 py-4 font-medium text-white whitespace-nowrap">
+                        <%= transaction.stock.ticker_symbol %> - <%= transaction.stock.company_name %>
+                    </th>
+                    <td class="px-6 py-4">
+                        <%= transaction.transaction_type %>
+                    </td>
+                    <td class="px-6 py-4">
+                        <%= transaction.number_of_shares %>
+                    </td>
+                    <td class="px-6 py-4">
+                        <%= number_to_currency(transaction.price) %>
+                    </td>
+                </tr>
+            <% end %>
+            </tbody>
+        </table>
+    </div>
 </div>

@@ -1,11 +1,11 @@
 <div class="flex justify-between items-center px-6 py-2">
 <div>
-  <%= link_to 'Approved', admin_pages_path, class: 'btn-secondary mr-4' %>
-  <%= link_to 'Pending', admin_pending_traders_path, class: 'btn-secondary' %>
+  <%= link_to "Buy Stock", stocks_path, class: 'btn-main' %>
+  <%= link_to "Sell Stock", stocks_path, class: 'btn-main' %>
 </div>
 
 <form> 
-<%= search_form_for @q, url: admin_pages_path do |f| %>  
+<%=  form_tag transactions_path, method: :get do %>  
 <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
   <div class="relative">
     <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -13,9 +13,8 @@
       <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
       </svg>
     </div>
-  <%= f.search_field :first_name_or_last_name_or_email_cont, class: "block w-full p-4 ps-10 text-sm text-white border border-none rounded-lg bg-strongdark", placeholder: "Search...", required: true %>
+  <%= text_field_tag :search, params[:search], class: "block w-full p-4 ps-10 text-sm text-white border border-none rounded-lg bg-strongdark", placeholder: "Search...", required: true %>
   <% end %>
   </div>
 </form>
-
 </div>

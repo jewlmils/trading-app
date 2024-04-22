@@ -15,7 +15,6 @@ Rails.application.routes.draw do
   end
   
   get 'admin/pending_traders', to: 'admin_pages#pending_traders'
-  get 'admin/transactions', to: 'admin_pages#transactions'
   resources :admin_pages, path: 'admin', as: 'admin_pages'
   get 'trader/trader_dashboard', to: 'trader_pages#show'
   post 'trader/trader_dashboard', to: 'trader_pages#deposit'
