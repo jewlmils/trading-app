@@ -1,8 +1,11 @@
 <div class="w-full px-8" style="height: calc(100vh - 64px);">
 <div class="mt-8 flex justify-between">
   <%= link_to 'Transaction', transactions_path, class: 'text-4xl font-bold text-white' %>
-  <p class="text-xl text-white">Cash Balance: <%= number_to_currency(@cash_balance) %></p>
 </div>
 
-<%= render 'transaction_table' %>
+<% if @transactions.present? %>
+  <%= render 'transaction_table' %>
+<% else %>
+    <p class="text-white text-center italic">There are currently no transactions on record.</p>
+<% end %>
 </div>

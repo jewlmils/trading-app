@@ -11,6 +11,9 @@
                         Transaction Type
                     </th>
                     <th scope="col" class="px-6 py-3">
+                        Number of Shares
+                    </th>
+                    <th scope="col" class="px-6 py-3">
                         Price
                     </th>
                     <th scope="col" class="px-6 py-3">
@@ -32,6 +35,9 @@
                     </td>
                     <td class="px-6 py-4">
                         <%= number_to_currency(transaction.price) %>
+                    </td>
+                    <td class="px-6 py-4">
+                        <%= transaction.created_at.strftime("%Y-%m-%d") %>
                     </td>
                 </tr>
             <% end %>

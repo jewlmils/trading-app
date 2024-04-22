@@ -1,59 +1,11 @@
-<div class="text-white">
-  <div>
-  <p>Wallet Balance: <%= @trader.wallet %></p>
+<div class=" block text-white px-6 py-8 w-full">
+  <div class="flex justify-between items-center border-b">
+    <div>
+      <p class="text-xl text-gray-500 mb-2">Current Balance</p>
+      <div class="flex items-center gap-2 mb-6">
+        $ <span class="text-4xl"><%= @trader.wallet %></span>
+      </div>
+    </div>
     <%= render 'deposit_form'%>
-
-  <h2>Portfolio:</h2>
-  <% if @portfolios.present? %>
-    <table>
-      <thead>
-        <tr>
-          <th>Stock</th>
-          <th>Shares</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @portfolios.each do |portfolio| %>
-          <% portfolio.stocks.each do |stock| %>
-            <tr>
-              <td><%= stock.company_name %> (<%= stock.ticker_symbol %>)</td>
-              <td><%= portfolio.number_of_shares %></td>
-              <td><%= link_to "Buy", stock_path(id: stock.ticker_symbol), class: "btn btn-primary" %></td>
-              <td><%= link_to "Sell", stock_path(id: stock.ticker_symbol), class: "btn btn-primary" %></td>
-            </tr>
-          <% end %>
-        <% end %>
-      </tbody>
-    </table>
-  <% else %>
-    <p>No stocks in the portfolio.</p>
-  <% end %>
-
-  <h1>Transaction History:</h1>
-  <% if @transactions.present? %>
-    <table>
-      <thead>
-        <tr>
-          <th>Stock</th>
-          <th>Transaction Type</th>
-          <th>Number of Shares</th>
-          <th>Price</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @transactions.each do |transaction| %>
-          <tr>
-            <td><%= transaction.stock.ticker_symbol %> - <%= transaction.stock.company_name %></td>
-            <td><%= transaction.transaction_type %></td>
-            <td><%= transaction.number_of_shares %></td>
-            <td><%= transaction.price %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  <% else %>
-    <p>No transaction history.</p>
-  <% end %>
-</div>
-
+    </div>
 </div>

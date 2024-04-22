@@ -1,9 +1,5 @@
 <div class="flex justify-between items-center px-6 py-2">
-<div>
-  <%= link_to "Buy Stock", stocks_path, class: 'btn-main' %>
-  <%= link_to "Sell Stock", stocks_path, class: 'btn-main' %>
-</div>
-
+<p class=" text-gray-700 font-bold">Cash Balance: <span class="text-white"><%= number_to_currency(@cash_balance) %></span></p>
 <form> 
 <%=  form_tag transactions_path, method: :get do %>  
 <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>

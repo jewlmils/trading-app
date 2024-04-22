@@ -1,22 +1,40 @@
-<div class="my-8">
-  <%= form_tag(stocks_path, method: :get, class: "flex items-center") do %>
-    <div class="flex items-center border rounded-md overflow-hidden">
-      <%= text_field_tag :search, params[:search], class: "px-4 py-2 w-full placeholder-gray-400 focus:outline-none", placeholder: "Search stocks by symbol..." %>
-      <button type="submit" class="px-4 py-2 bg-blue-500 text-white hover:bg-blue-600">Search</button>
+<div class="text-white w-full h-screen px-6">
+  <%= render 'shared/widgets/ticker_tape' %>
+  <div class="py-6">
+    <div class="flex justify-between items-center">
+      <h2 class="font-bold">Trade Stocks</h2>
+      <form>
+        <%= form_tag(stocks_path, method: :get, class: "flex items-center") do %>
+          <label for="symbol" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+          <div class="relative">
+            <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+              <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+              </svg>
+            </div>
+            <%= text_field_tag :symbol, params[:symbol], class: "block w-full p-4 ps-10 text-sm text-white border border-none rounded-lg bg-strongdark", placeholder: "Search...", required: true %>
+          </div>
+        <% end %>
+      </form>
     </div>
+  </div>
+  <%= render 'shared/widgets/chart' %>
+  <% if @quote.present? %>
+    <div class="py-6">
+      <div class="flex justify-between items-center">
+        <h1 class="text-xl font-bold mb-2"><%= @quote.company_name %> (<%= @quote.symbol %>)</h1>
+        <div>
+          <p class="mb-2">Latest Price: <%= @quote.latest_price %></p>
+          <p class="mb-2">Change: <%= @quote.change %> (<%= @quote.change_percent %>)</p>
+        </div>
+      </div>
+      <div class="text-black flex justify-evenly items-center py-4">
+        <%= render 'transactions/buy', id: @quote.symbol %>
+        <%= render 'transactions/sell', id: @quote.symbol %>
+      </div>
+    </div>
+  <% else %>
+  <h3 class="tex-xl font-bold py-4">Market Overview</h3>
+  <%= render 'shared/widgets/market_data' %>
   <% end %>
 </div>
-
-<h2>Major Stocks</h2>
-<ul>
-  <% @major_stocks.each do |major_stock| %>
-    <li>
-      <%= link_to "#{major_stock[:name]} (#{major_stock[:symbol]})", stock_path(major_stock[:symbol]) %>
-      <% if major_stock[:price] %>
-        <span><%= number_to_currency(major_stock[:price]) %></span>
-      <% else %>
-        <span>Price not available</span>
-      <% end %>
-    </li>
-  <% end %>
-</ul>
