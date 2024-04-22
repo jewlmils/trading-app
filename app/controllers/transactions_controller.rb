@@ -80,6 +80,8 @@ class TransactionsController < ApplicationController
       s.price = @quote.latest_price
     end
     
+    stock_price = StockPrice.find_or_create_by(stock_id: stock.id, date: Date.today)
+    stock_price.update(current_price: @quote.latest_price)
     portfolio = trader.portfolios.find_or_create_by(stock_id: stock.id)
     portfolio_stock = PortfolioStock.find_or_create_by(portfolio_id: portfolio.id, stock_id: stock.id)
 

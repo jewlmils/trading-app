@@ -10,3 +10,5 @@ pin "stimulus-character-counter" # @4.2.0
 pin "stimulus-notification" # @2.2.0
 pin "hotkeys-js" # @3.13.7
 pin "stimulus-use" # @0.51.3
+pin "chartkick", to: "chartkick.js"
+pin "Chart.bundle", to: "Chart.bundle.js"
