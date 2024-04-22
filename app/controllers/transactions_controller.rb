@@ -23,13 +23,12 @@ class TransactionsController < ApplicationController
 
     if @trader.wallet >= @total_price
       execute_transaction(@trader, @symbol, @quantity, 'buy', @total_price)
-
       flash[:notice] = 'Stock purchased successfully.'
+      redirect_to portfolios_path
     else
       flash[:alert] = 'Insufficient funds to buy the stock.'
+      redirect_to stock_path
     end
-
-    redirect_to stock_path
 
     rescue IEX::Errors::SymbolNotFoundError => e
       handle_error
@@ -48,7 +47,7 @@ class TransactionsController < ApplicationController
     @total_price = @quantity * @quote.latest_price
     execute_transaction(@trader, @symbol, @quantity, 'sell', @total_price)
     flash[:notice] = 'Stock sold successfully.'
-    redirect_to stock_path
+    redirect_to portfolios_path
     
     rescue IEX::Errors::SymbolNotFoundError => e
       handle_error

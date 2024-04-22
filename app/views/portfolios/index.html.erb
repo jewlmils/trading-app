@@ -13,7 +13,7 @@
       You currently do not have any stocks in your portfolio. To begin investing, <%= link_to "purchase stocks", stocks_path %> now.
     </p>
   <% else %>
-<ul class="bg-lightdark border-4 border-gray24 p-4 list-none grid grid-cols-1 gap-4 lg:grid-cols-3 sm:grid-cols-2">
+<ul class="bg-lightdark p-4 list-none grid grid-cols-1 gap-4 lg:grid-cols-3 sm:grid-cols-2">
   <% @portfolios.each do |portfolio| %>
   <% portfolio.stocks.each do |stock| %>
   <li>
