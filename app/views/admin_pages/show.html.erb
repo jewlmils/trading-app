@@ -23,7 +23,9 @@
 <% if @transaction.present? %>
 <%= render 'transactions' %>
 <% else %>
-    <p class="text-white text-center italic">There are currently no transactions on record.</p>
+    <div class="text-white text-center italic border-t">
+        <p class="mt-4">There are currently no transactions on record.</p>
+    </div>
 <% end %>
 </div>
 
