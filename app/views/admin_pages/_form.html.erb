@@ -1,8 +1,9 @@
 <div class="mx-auto max-w-7xl flex justify-center items-center h-screen">
   <div class="sm:mx-auto sm:w-full sm:max-w-md ">
-    <div class="bg-gray-400 p-8 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100"> 
-      <div class="mb-4 text-center mt-2 text-white font-bold text-4xl">
-          <%= @trader.new_record? ? 'Add' : 'Edit' %> Trader
+    <div class="p-8 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10"> 
+      <div class="mb-4 text-center mt-2 text-white font-medium italic text-4xl">
+          <%= @trader.new_record? ? 'Add' : 'Edit' %>
+          <span class="font-bold not-italic">Trader</span>
       </div>
       <%= form_with(model: @trader, url: @trader.new_record? ? admin_pages_path : admin_page_path(@trader), method: @trader.new_record? ? :post : :patch, local: false) do |f| %>
         <div class="grid md:grid-cols-2 md:gap-3 mb-4">
