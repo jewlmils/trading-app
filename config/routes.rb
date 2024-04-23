@@ -14,9 +14,11 @@ Rails.application.routes.draw do
     end
   end
   
+  #admin routes
   get 'admin/pending_traders', to: 'admin_pages#pending_traders'
-  get 'admin/transactions', to: 'admin_pages#transactions'
   resources :admin_pages, path: 'admin', as: 'admin_pages'
+
+  #trader routes
   get 'trader/trader_dashboard', to: 'trader_pages#show'
   post 'trader/trader_dashboard', to: 'trader_pages#deposit'
 
@@ -31,9 +33,5 @@ Rails.application.routes.draw do
      registrations: 'traders/registrations'
    }
    
-  # resources :stocks do
-  #   collection do
-  #     post :buy  # Route for the 'buy' action
-  #   end
-  # end
+  match "*path", to: "application#page_not_found", via: :all
 end

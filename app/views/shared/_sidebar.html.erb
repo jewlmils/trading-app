@@ -2,58 +2,14 @@
   <nav class="flex">
     <div class="w-64 p-4 bg-strongdark h-screen sticky top-0 z-999">
       <div class="mb-4">
-        <%= link_to 'TRADEXPERT', root_path, class: "text-2xl font-bold text-mediumpurple" %> 
+        <%= link_to 'TradeXpert', root_path, class: "text-2xl font-bold txt-gradient" %> 
       </div>
       
       <ul class="flex-col text-white">
         <% if current_admin.present? %>
-          <li>
-            <%= link_to admin_pages_path, class: 'block px-4 py-2 hover:rounded hover:bg-hover' do %>
-              <i class="fa-solid fa-list mr-2"></i>
-              <span class="md:inline-block">Traders</span>
-            <% end %>
-          </li>
-          <div class="py-4 border-t border-gray-200 dark:border-gray-600 max-h-[500px] overflow-y-auto"></div>
-          <li class="block px-4 py-2 hover:rounded hover:bg-hover">
-            <i class="fa-solid fa-user mr-2"></i>
-            <span class="md:inline-block">Admin</span>
-          </li>
-          <li>
-            <%= link_to destroy_admin_session_path, data: { turbo_method: :delete, turbo_confirm: "Log out?" }, class: 'block px-4 py-2 hover:rounded hover:bg-hover' do %>
-              <i class="fa-solid fa-arrow-right-from-bracket mr-2"></i>
-              <p class="hidden sm:inline-flex"> Logout </p>
-            <% end %>
-          </li>
+          <%= render 'shared/admin_menu' %>
         <% elsif current_trader.present? %>
-          <li>
-            <%= link_to trader_trader_dashboard_path, class: 'block px-4 py-2 hover:rounded hover:bg-hover' do %>
-              <i class="fa-solid fa-gauge mr-2"></i>
-              <span class="md:inline-block">Dashboard</span>
-            <% end %>
-          </li>
-          <li>
-            <%= link_to portfolios_path, class: 'block px-4 py-2 hover:rounded hover:bg-hover' do %>
-              <i class="fa-solid fa-chart-line mr-2"></i>
-              <span class="md:inline-block">Portfolio</span>
-            <% end %>
-          </li>
-          <li class="mb-2">
-            <%= link_to transactions_path, class: 'block px-4 py-2 hover:rounded hover:bg-hover' do %>
-              <i class="fa-solid fa-folder-open mr-2"></i>
-              <span class="md:inline-block">Transaction</span>
-            <% end %>
-          </li>
-          <div class="py-4 border-t border-gray-200 dark:border-gray-600 max-h-[500px] overflow-y-auto"></div>
-          <li class="block px-4 py-2 hover:rounded hover:bg-hover">
-            <i class="fa-solid fa-user mr-2"></i>
-            <span class="md:inline-block"><%= current_trader.first_name %></span>
-          </li>
-          <li>
-            <%= link_to destroy_trader_session_path, data: { turbo_method: :delete, turbo_confirm: "Log out?" }, class: 'block px-4 py-2 hover:rounded hover:bg-hover' do %>
-              <i class="fa-solid fa-arrow-right-from-bracket mr-2"></i>
-              <p class="hidden sm:inline-flex"> Logout </p>
-            <% end %>
-          </li>
+          <%= render 'shared/trader_menu' %>
         <% end %>
       </ul>
     </div>

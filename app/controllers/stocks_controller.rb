@@ -4,20 +4,15 @@ class StocksController < ApplicationController
 
   def index
     @major_stocks = fetch_major_stocks
-    if params[:search]
-      @search_keyword = params[:search]
+    if params[:symbol].present?
+      @search_keyword = params[:symbol]
       @quote = search_stocks(@search_keyword)
-      if @quote.nil?
+      unless @quote
         redirect_to stocks_path, alert: "No stocks available for #{@search_keyword}"
-      else
-        render :show
+        return
       end
     end
-  end
-
-  def show
     @symbol = params[:id]
-    @quote = @client.quote(@symbol)
   end
 
   private
@@ -44,12 +39,11 @@ class StocksController < ApplicationController
 
   def search_stocks(keyword)
     @client.quote(keyword)
-  rescue IEX::Errors::SymbolNotFoundError => e
+  rescue IEX::Errors::SymbolNotFoundError
     nil
   end
 
   def require_trader
     redirect_to root_path, alert: "You are not authorized to access this page." unless trader_signed_in?
   end
-  
 end

@@ -6,19 +6,18 @@ class AdminPagesController < ApplicationController
     @q = Trader.where(approved: true).ransack(params[:q])
     @pagy, @traders = pagy(@q.result(distinct: true).sorted)
   end
-  
+
   def pending_traders
     @q = Trader.where.not(confirmed_at: nil).where(approved: false).ransack(params[:q])
     @pagy, @traders = pagy(@q.result(distinct: true).sorted)
   end
 
-  def transactions
-    @transactions = Transaction.all
-  end
-
   def show
-    @trader = Trader.find(params[:id])
-    @transaction = @trader.transactions
+    if @trader
+      @transaction = @trader.transactions
+    else
+      redirect_to admin_pages_path, alert: "Data not found."
+    end
   end
 
   def new
@@ -49,7 +48,8 @@ class AdminPagesController < ApplicationController
   private
 
   def set_trader
-    @trader = Trader.find(params[:id])
+    @trader = Trader.find_by(id: params[:id])
+    redirect_to admin_pages_path, alert: "Trader not found." unless @trader
   end
 
   def require_admin

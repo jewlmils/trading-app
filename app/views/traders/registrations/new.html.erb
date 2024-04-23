@@ -1,18 +1,18 @@
 <div class="mx-auto max-w-7xl flex justify-center items-center h-screen">
   <div class="sm:mx-auto sm:w-full sm:max-w-md ">
-    <div class="bg-lightdark py-8 px-4 shadow sm:rounded-lg sm:px-10"> 
-      <div class="mb-4">
-          <h1 class="m-0 text-center font-bold tracking-tight text-5xl text-white">Hello</h1>
-          <h4 class="text-center mt-0 text-white">Create your account</h4>
+    <div class="bg-gray-400 p-8 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100"> 
+      <div class="mb-4 text-center">
+        <span class="text-5xl font-bold txt-gradient">TradeXpert</span>
+        <h4 class="mt-2 text-white">Create your account</h4>
       </div>
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= render "traders/shared/error_messages", resource: resource %>
         <div class="grid md:grid-cols-2 md:gap-3 mb-4">
-          <div >
+          <div>
             <%= f.label :first_name, class: "text-sm font-medium text-white" %><br />
             <%= f.text_field :first_name, autocomplete: "given-name", placeholder: "Juan",  class: "w-full rounded-md border border-gray-300 shadow-md shadow-gray-900/10" %>
           </div>
-          <div >
+          <div>
             <%= f.label :last_name, class: "text-sm font-medium text-white" %><br />
             <%= f.text_field :last_name, autocomplete: "family-name", placeholder: "Dela Cruz",  class: "w-full rounded-md border border-gray-300 shadow-md shadow-gray-900/10" %>
           </div>

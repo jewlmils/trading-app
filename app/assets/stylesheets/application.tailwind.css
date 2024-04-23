@@ -36,10 +36,9 @@
 
   .btn-main {
     text-decoration: none;
-    user-select: none;
-    border-radius: 0.2rem;
+    border-radius: 0.75rem;
     background-color: #5b1bd2;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 1.5rem;
     text-align: center;
     vertical-align: middle;
     font-size: 1rem;
@@ -53,20 +52,21 @@
 
   .btn-secondary {
     text-decoration: none;
-    padding: 0.5rem 0 0.5rem 0;
+    padding: 0.5rem 1.5rem;
     font-size: 1rem;
     text-align: center;
-    color: #d3cfdd;
     vertical-align: middle;
+    color: #d3cfdd;
     transition: all 0.3s ease;
+    border: solid 2px white;
     border-radius: 0.75rem;
     user-select: none;
-    background-color: none;
+    background-color: transparent;
 
     &:hover {
-      color: #fff;
-      text-decoration: underline;
-      text-underline-offset: 0.5rem;
+      color: #5b1bd2;
+      /* text-decoration: underline;
+      text-underline-offset: 0.5rem; */
     }
   }
 }

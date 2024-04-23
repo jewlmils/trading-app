@@ -7,13 +7,13 @@
   <%= render 'portfolio_chart' %>
 </div>
 
-<div class="py-4 border-t border-gray-200 dark:border-gray-600 max-h-[500px] overflow-y-auto">
+<div class="py-4 border-t border-gray-500 dark:border-gray-600 max-h-[500px] overflow-y-auto">
   <% if @portfolios.empty? %>
     <p class="text-gray-500 dark:text-gray-400">
       You currently do not have any stocks in your portfolio. To begin investing, <%= link_to "purchase stocks", stocks_path %> now.
     </p>
   <% else %>
-<ul class="bg-lightdark border-4 border-gray24 p-4 list-none grid grid-cols-1 gap-4 lg:grid-cols-3 sm:grid-cols-2">
+<ul class="bg-lightdark p-4 list-none grid grid-cols-1 gap-4 lg:grid-cols-3 sm:grid-cols-2">
   <% @portfolios.each do |portfolio| %>
   <% portfolio.stocks.each do |stock| %>
   <li>
