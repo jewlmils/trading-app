@@ -73,6 +73,7 @@ end
 gem "tailwindcss-rails", "~> 2.3"
 
 gem "pagy", "~> 8.0"
+gem "rspec-rails"
 
 gem 'ransack'
 gem "chartkick", "~> 5.0"
