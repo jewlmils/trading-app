@@ -1,85 +1,85 @@
 <div>
-<% @stocks.each do |stock| %>
-  <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
-    <%= stock.company_name %> (<%= stock.ticker_symbol %>)
-  </h1>
-<% end %>
-
-<ul class="max-w-md space-y-1 text-gray-500 list-disc list-inside dark:text-gray-400">
-  <% @asset_allocation.each do |ticker_symbol, allocation| %>
-    <li><%= ticker_symbol %>: <%= number_to_percentage(allocation, precision: 2) %></li>
+  <% @stocks.each do |stock| %>
+    <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+      <%= stock.company_name %> (<%= stock.ticker_symbol %>)
+    </h1>
   <% end %>
-</ul>
 
-<p class="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">
-  Total Value: <%= number_to_currency(@single_stock_portfolio_value) %>
-</p>
-
-<% if @performance_metrics.present? && @performance_metrics.is_a?(Hash) && @performance_metrics[:roi].present? %>
-  <p class="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">
-    ROI: <%= @performance_metrics[:roi].round(2) %>%
-  </p>
-<% else %>
-  <p class="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">
-    Performance Metrics not available
-  </p>
-<% end %>
-
-<h2 class="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">Transactions</h2>
-<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-  <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-      <tr>
-        <th scope="col" class="px-8 py-3">
-          Stock
-        </th>
-        <th scope="col" class="px-8 py-3">
-          Transaction Type
-        </th>
-        <th scope="col" class="px-8 py-3">
-          Quantity
-        </th>
-        <th scope="col" class="px-8 py-3">
-          Price per Share
-        </th>
-        <th scope="col" class="px-8 py-3">
-          Total Price
-        </th>
-        <th scope="col" class="px-8 py-3">
-          Date
-        </th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @transactions.each do |transaction| %>
-
-      <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-        <th scope="row" class="px-8 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-          <%= transaction.stock.company_name %>
-        </th>
-        <td class="px-8 py-4">
-          <%= transaction.transaction_type %>
-        </td>
-        <td class="px-8 py-4">
-          <%= transaction.number_of_shares %>
-        </td>
-        <td class="px-8 py-4">
-          <%= number_to_currency(transaction.price / 2) %>
-        </td>
-        <td class="px-8 py-4">
-          <%= number_to_currency(transaction.price) %>
-        </td>
-        <td class="px-8 py-4">
-          <%= transaction.created_at.strftime("%Y-%m-%d") %>
-        </td>
-      </tr>
+  <ul class="max-w-md space-y-1 text-gray-500 list-disc list-inside dark:text-gray-400">
+    <% @asset_allocation.each do |ticker_symbol, allocation| %>
+      <li><%= ticker_symbol %>: <%= number_to_percentage(allocation, precision: 2) %></li>
     <% end %>
-  </tbody>
-</table>
-</div>
+  </ul>
 
-<h2 class="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">
-  Asset Allocation
-</h2>
+  <p class="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">
+    Total Value: <%= number_to_currency(@single_stock_portfolio_value) %>
+  </p>
+
+  <% if @performance_metrics.present? && @performance_metrics.is_a?(Hash) && @performance_metrics[:roi].present? %>
+    <p class="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">
+      ROI: <%= @performance_metrics[:roi].round(2) %>%
+    </p>
+  <% else %>
+    <p class="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">
+      Performance Metrics not available
+    </p>
+  <% end %>
+
+  <h2 class="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">Transactions</h2>
+  <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+      <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <tr>
+          <th scope="col" class="px-8 py-3">
+            Stock
+          </th>
+          <th scope="col" class="px-8 py-3">
+            Transaction Type
+          </th>
+          <th scope="col" class="px-8 py-3">
+            Quantity
+          </th>
+          <th scope="col" class="px-8 py-3">
+            Price per Share
+          </th>
+          <th scope="col" class="px-8 py-3">
+            Total Price
+          </th>
+          <th scope="col" class="px-8 py-3">
+            Date
+          </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @transactions.each do |transaction| %>
+
+        <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+          <th scope="row" class="px-8 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+            <%= transaction.stock.company_name %>
+          </th>
+          <td class="px-8 py-4">
+            <%= transaction.transaction_type %>
+          </td>
+          <td class="px-8 py-4">
+            <%= transaction.number_of_shares %>
+          </td>
+          <td class="px-8 py-4">
+            <%= number_to_currency(transaction.price / 2) %>
+          </td>
+          <td class="px-8 py-4">
+            <%= number_to_currency(transaction.price) %>
+          </td>
+          <td class="px-8 py-4">
+            <%= transaction.created_at.strftime("%Y-%m-%d") %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  </div>
+
+  <h2 class="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">
+    Asset Allocation
+  </h2>
 
 </div>

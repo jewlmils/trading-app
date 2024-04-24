@@ -29,39 +29,26 @@ class Portfolio < ActiveRecord::Base
   end
   
   def self.cumulative_total_value_by_day
-    # Define the subquery to calculate total buy and sell values per day
-    subquery = Transaction.select("
-      DATE(transactions.created_at) AS transaction_date,
-      SUM(
-        CASE 
-          WHEN transactions.transaction_type = 'buy' THEN stock_prices.current_price * transactions.number_of_shares 
-          ELSE 0 
-        END
-      ) AS total_buy_value,
-      SUM(
-        CASE 
-          WHEN transactions.transaction_type = 'sell' THEN stock_prices.current_price * transactions.number_of_shares 
-          ELSE 0 
-        END
-      ) AS total_sell_value
-    ")
-    .joins(portfolio: { portfolio_stocks: :stock })
-    .joins("LEFT JOIN stock_prices ON stocks.id = stock_prices.stock_id AND DATE(transactions.created_at) = DATE(stock_prices.created_at)")
-    .group("DATE(transactions.created_at)")
+    dates_with_transactions = Transaction.pluck(:created_at).map(&:to_date).uniq
   
-    # Define the main query using a Common Table Expression (CTE) to reference the subquery
-    query = <<-SQL
-      WITH buy_sell_values AS (
-        #{subquery.to_sql}
-      )
-      SELECT 
-        transaction_date,
-        SUM(total_buy_value) OVER (ORDER BY transaction_date) - SUM(total_sell_value) OVER (ORDER BY transaction_date) AS net_cumulative_value
-      FROM 
-        buy_sell_values
-    SQL
+    cumulative_values_by_day = {}
   
-    # Execute the query and convert the result to a hash for easier access
-    ActiveRecord::Base.connection.execute(query).to_a.map { |record| [record['transaction_date'], record['net_cumulative_value'].to_f] }.to_h
-  end  
+    dates_with_transactions.each do |date|
+      total_value = 0
+      transactions_up_to_date = Transaction.where("DATE(created_at) <= ?", date)
+  
+      transactions_up_to_date.each do |transaction|
+        stock_price = StockPrice.where(stock_id: transaction.stock_id, date: date).first
+        if transaction.transaction_type == 'buy'
+          total_value += transaction.number_of_shares * stock_price.current_price if stock_price
+        elsif transaction.transaction_type == 'sell'
+          total_value -= transaction.number_of_shares * stock_price.current_price if stock_price
+        end
+      end
+  
+      cumulative_values_by_day[date] = total_value
+    end
+  
+    cumulative_values_by_day
+  end
 end
