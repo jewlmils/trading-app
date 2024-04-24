@@ -78,16 +78,16 @@
                             </div>
                         </td>
                         <td class="px-6 py-4">
-                            <%= @ohlc[stock.ticker_symbol].open.price %>
+                            <%= @ohlc[stock.ticker_symbol]&.open&.price || 'N/A' %>
                         </td>
                         <td class="px-6 py-4">
-                            <%= @ohlc[stock.ticker_symbol].high %>
+                            <%= @ohlc[stock.ticker_symbol].high || 'N/A'%>
                         </td>
                         <td class="px-6 py-4">
-                            <%= @ohlc[stock.ticker_symbol].low %>
+                            <%= @ohlc[stock.ticker_symbol].low || 'N/A'%>
                         </td>
                         <td class="px-6 py-4">
-                            <%= @ohlc[stock.ticker_symbol].close.price %>
+                            <%= @ohlc[stock.ticker_symbol]&.close&.price || 'N/A' %>
                         </td>
                         <td class="px-6 py-4">
                             <%= @quotes[stock.ticker_symbol].previous_close %>
