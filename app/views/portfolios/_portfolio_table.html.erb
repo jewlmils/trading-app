@@ -1,0 +1,100 @@
+<div class="relative overflow-x-auto bg-lightdark shadow-md sm:rounded-lg">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-lightdark">
+            <tr class="border-b border-gray-500">
+                <th scope="col" class="px-6 py-3">
+                    Stocks
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Price
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Change
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Open
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    High
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Low
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Close
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Prev
+                </th>
+            </tr>
+        </thead>
+        <tbody class="overflow-y-auto max-h-10">
+            <% @portfolios.each do |portfolio| %>
+                <% portfolio.stocks.each do |stock| %>
+                    <tr class="border-b border-gray-500 bg-lightdark hover:bg-gray-700">
+                        <td class="px-6 py-4 font-medium text-white whitespace-nowrap">
+                            <%= link_to portfolio.stocks.first.ticker_symbol, portfolio_path(portfolio) %>
+                        </td>
+                        <td class="px-6 py-4">
+                            <% if @quotes[stock.ticker_symbol].present? %>
+                                <% change = @quotes[stock.ticker_symbol].change %>
+                                <% if change.present? %>
+                                    <% if change.positive? %>
+                                        <div class="flex items-center gap-1">
+                                            <i class="material-icons text-green-500" style="text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);">
+                                                arrow_drop_up
+                                            </i>
+                                            <p class="text-green-500" style="text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);">
+                                                <%= @quotes[stock.ticker_symbol].latest_price %>
+                                            </p>
+                                        </div>
+                                    <% elsif change.negative? %>
+                                        <div class="flex items-center gap-2.5">
+                                            <i class="material-icons text-red-500" style="text-shadow: 0 0 5px rgba(255, 0, 0, 0.5);">
+                                                arrow_drop_down
+                                            </i>
+                                            <p class="text-red-500" style="text-shadow: 0 0 5px rgba(255, 0, 0, 0.5);">
+                                                <%= @quotes[stock.ticker_symbol].latest_price %>
+                                            </p>
+                                        </div>
+                                    <% else %>
+                                        <p><%= @quotes[stock.ticker_symbol].latest_price %></p>
+                                    <% end %>
+                                <% else %>
+                                    <p><%= @quotes[stock.ticker_symbol].latest_price %></p>
+                                <% end %>
+                            <% end %>
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="flex flex-col gap-2">
+                                <% if change.present? %>
+                                    <% if change.positive? %>
+                                        <p>+<%= change %></p>
+                                    <% else %>
+                                        <p><%= change %></p>
+                                    <% end %>
+                                    <p><%= @quotes[stock.ticker_symbol].change_percent_s %></p>
+                                <% end %>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <%= @ohlc[stock.ticker_symbol].open.price %>
+                        </td>
+                        <td class="px-6 py-4">
+                            <%= @ohlc[stock.ticker_symbol].high %>
+                        </td>
+                        <td class="px-6 py-4">
+                            <%= @ohlc[stock.ticker_symbol].low %>
+                        </td>
+                        <td class="px-6 py-4">
+                            <%= @ohlc[stock.ticker_symbol].close.price %>
+                        </td>
+                        <td class="px-6 py-4">
+                            <%= @quotes[stock.ticker_symbol].previous_close %>
+                        </td>
+                    </tr>
+                <% end %>
+            <% end %>
+        </tbody>
+    </table>
+</div>
