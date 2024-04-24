@@ -1,11 +1,14 @@
 <div class="text-white w-full h-screen px-6 py-2 flex flex-col">
   <%= render 'shared/widgets/ticker_tape' %>
-  <div class="py-6">
-    <div class="flex justify-between items-center">
-      <%= link_to stocks_path do%>
-        <h2 class="font-bold">Trade Stocks</h2>
-      <% end %>
-      <form>
+
+  <div class="flex-grow flex flex-col lg:flex-row gap-2 pt-4">
+    <div class="w-full h-full lg:w-3/4 flex flex-col gap-2">
+      <%= render 'shared/widgets/chart' %>
+      <h3 class="font-bold py-4">Market Overview</h3>
+      <%= render 'shared/widgets/market_data' %>
+    </div>
+    <div class="w-full lg:w-1/4 lg:px-2">
+      <form class="mb-4">
         <%= form_tag(stocks_path, method: :get, class: "flex items-center") do %>
           <label for="symbol" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
           <div class="relative">
@@ -14,34 +17,20 @@
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
               </svg>
             </div>
-            <%= text_field_tag :symbol, params[:symbol], class: "block p-2 ps-10 w-full rounded-md border border-gray-800 shadow-md shadow-gray-900/10 md:w-96 bg-strongdark", placeholder: "Search...", required: true %>
+            <%= text_field_tag :symbol, params[:symbol], class: "block p-2 ps-10 w-full rounded-md border border-gray-800 shadow-md shadow-gray-900/10 bg-strongdark", placeholder: "Search...", required: true %>
           </div>
         <% end %>
       </form>
-    </div>
-  </div>
-
-  <div class="flex-grow flex flex-col lg:flex-row gap-2">
-    <div class="w-full h-full lg:w-3/4 flex flex-col gap-2">
-      <%= render 'shared/widgets/chart' %>
-      <h3 class="font-bold py-4">Market Overview</h3>
-      <%= render 'shared/widgets/market_data' %>
-    </div>
-    <div class="w-full lg:w-1/4 lg:px-2">
       <% if @quote.present? %>
-        <div>
-            <h1 class="text-xl font-bold mb-2"><%= @quote.company_name %> (<%= @quote.symbol %>)</h1>
-            <p class="mb-2">Latest Price: <%= @quote.latest_price %></p>
-            <p class="mb-2">Change: <%= @quote.change %> (<%= @quote.change_percent %>)</p>
-          </div>
+      <%= render 'shared/widgets/symbol_info' %>
           <div class="text-black flex flex-col items-center py-4 gap-4">
             <%= render 'transactions/buy', id: @quote.symbol %>
             <%= render 'transactions/sell', id: @quote.symbol %>
           </div>
-        </div>
       <% else %>
         <%= render 'shared/widgets/news' %>
       <% end %>
     </div>
   </div>
+
 </div>
