@@ -8,15 +8,19 @@ class PortfoliosController < ApplicationController
     @cash_balance = current_trader.wallet
     @portfolio_total_value_by_day = Portfolio.cumulative_total_value_by_day
     @quotes = {}
+    @ohlc = {}
+
 
     @portfolios.each do |portfolio|
       portfolio.stocks.each do |stock|
         @quotes[stock.ticker_symbol] = @client.quote(stock.ticker_symbol)
+        @ohlc[stock.ticker_symbol] = @client.ohlc(stock.ticker_symbol)
       end
     end
     
     fetch_realtime_data_for_stocks(@portfolios)
     StockPrice.update_stock_prices_for_today(@client)
+    StockPrice.update_stock_prices_for_yesterday(@client)
   end
 
   def show

@@ -10,4 +10,14 @@ class StockPrice < ApplicationRecord
       stock_price.update(current_price: quote.latest_price)
     end
   end
+
+  def self.update_stock_prices_for_yesterday(client)
+    stocks = Stock.all
+  
+    stocks.each do |stock|
+      yesterday_stock_price = StockPrice.find_or_create_by(stock_id: stock.id, date: Date.yesterday)
+      quote = client.quote(stock.ticker_symbol)
+      yesterday_stock_price.update(current_price: quote.previous_close)
+    end
+  end
 end
