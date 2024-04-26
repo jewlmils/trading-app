@@ -1,4 +1,4 @@
-# Trading App
+# TradeXpert
 
 This is a simple trading app project built using Devise for authentication, Tailwind CSS for styling, Turbo Stimulus for interactivity, RSpec for testing, and the IEX API for fetching stock market data.
 
