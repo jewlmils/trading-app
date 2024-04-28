@@ -8,6 +8,8 @@ class TransactionsController < ApplicationController
       @transactions = @transactions.joins(:stock).where("stocks.company_name ILIKE :search_start OR stocks.ticker_symbol ILIKE :search_start", search_start: "#{params[:search]}%")
     end
 
+    @pagy, @paginated_transactions = pagy(@transactions)
+    
     @portfolio = current_trader.portfolios
     @cash_balance = current_trader.wallet
   end

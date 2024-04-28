@@ -4,12 +4,12 @@ class PortfoliosController < ApplicationController
 
   def index
     @portfolios = current_trader.portfolios
+    @pagy, @paginated_portfolios = pagy(@portfolios)
     @total_portfolio_value = Portfolio.calculate_total_portfolio_value(@portfolios)
     @cash_balance = current_trader.wallet
     @portfolio_total_value_by_day = Portfolio.cumulative_total_value_by_day
     @quotes = {}
     @ohlc = {}
-
 
     @portfolios.each do |portfolio|
       portfolio.stocks.each do |stock|
@@ -28,6 +28,7 @@ class PortfoliosController < ApplicationController
     @stocks = @portfolio.stocks
     @single_stock_portfolio_value = Portfolio.calculate_single_stock_portfolio_value(@portfolio)
     @transactions = @portfolio.transactions.order(created_at: :desc)
+    @pagy, @paginated_transactions = pagy(@transactions, items: 4)
     @performance_metrics = calculate_performance_metrics(@portfolio)
     @asset_allocation = calculate_asset_allocation(@portfolio)
     
