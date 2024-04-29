@@ -1,4 +1,4 @@
-<div class="w-full h-screen px-8">
+<div class="w-full h-screen py-8 px-8">
   <div class="flex justify-between items-center mb-2 border-b">
     <div>
       <p class="text-xl text-gray-500 mb-2">Portfolio Total Value:</p>
@@ -14,7 +14,7 @@
     </div>
   </div>
 
-  <div class="flex flex-col gap-2">
+  <div class="flex flex-col gap-2.5">
     <%= render 'portfolio_chart' %>
     <% if @portfolios.present? %>
       <%= render 'portfolio_table'%>

@@ -12,6 +12,9 @@
                     Change
                 </th>
                 <th scope="col" class="px-6 py-3">
+                    Chg%
+                </th>
+                <th scope="col" class="px-6 py-3">
                     Open
                 </th>
                 <th scope="col" class="px-6 py-3">
@@ -29,7 +32,7 @@
             </tr>
         </thead>
         <tbody>
-                <% @portfolios.each do |portfolio| %>
+                <% @paginated_portfolios.each do |portfolio| %>
                     <% portfolio.stocks.each do |stock| %>
                         <tr class="border-b border-gray-500 bg-lightdark hover:bg-gray-700">
                             <td class="px-6 py-4 font-medium text-white whitespace-nowrap">
@@ -73,9 +76,11 @@
                                         <% else %>
                                             <p><%= change %></p>
                                         <% end %>
-                                        <p><%= @quotes[stock.ticker_symbol].change_percent_s %></p>
                                     <% end %>
                                 </div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <p><%= @quotes[stock.ticker_symbol].change_percent_s %></p>
                             </td>
                             <td class="px-6 py-4">
                                 <%= @ohlc[stock.ticker_symbol]&.open&.price || 'N/A' %>
