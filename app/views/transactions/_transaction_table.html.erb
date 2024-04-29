@@ -4,13 +4,13 @@
         <thead class="text-xs text-gray-700 uppercase bg-lightdark">
             <tr class="border-b border-gray-500">
                 <th scope="col" class="px-6 py-3">
-                    Stock
+                    Stocks
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Transaction Type
+                    Trade Type
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Number of Shares
+                    Quantity
                 </th>
                 <th scope="col" class="px-6 py-3">
                     Price per Share
@@ -27,7 +27,10 @@
         <% @paginated_transactions.each do |transaction| %>
             <tr class="border-b border-gray-500 bg-lightdark">
                 <th scope="row" class="px-6 py-4 font-medium text-white whitespace-nowrap">
-                    <%= transaction.stock.ticker_symbol %> - <%= transaction.stock.company_name %>
+                    <div class="flex flex-col gap-0.5">
+                        <p><%= transaction.stock.company_name %></p>
+                        <p class="text-gray-500"><%= transaction.stock.ticker_symbol %></p> 
+                    </div>
                 </th>
                 <td class="px-6 py-4">
                     <%= transaction.transaction_type %>
@@ -36,7 +39,7 @@
                     <%= transaction.number_of_shares %>
                 </td>
                 <td class="px-6 py-4">
-                    <%= number_to_currency(transaction.price / 2) %>
+                    <%= number_to_currency(transaction.price / transaction.number_of_shares) %>
                 </td>
                 <td class="px-6 py-4">
                     <%= number_to_currency(transaction.price) %>
