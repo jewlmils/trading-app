@@ -4,7 +4,7 @@ class PortfoliosController < ApplicationController
 
   def index
     @portfolios = current_trader.portfolios
-    @pagy, @paginated_portfolios = pagy(@portfolios)
+    @pagy, @paginated_portfolios = pagy(@portfolios, items: 3)
     @total_portfolio_value = Portfolio.calculate_total_portfolio_value(@portfolios)
     @cash_balance = current_trader.wallet
     @portfolio_total_value_by_day = Portfolio.cumulative_total_value_by_day
