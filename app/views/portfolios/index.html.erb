@@ -7,9 +7,19 @@
       </div>
     </div>
     <div>
-      <p class="text-xl text-gray-500 mb-2">Cash Balance:</p>
+      <p class="text-xl text-gray-500 mb-2">Net Gain/Loss:</p>
       <div class="flex items-center gap-2 mb-6 text-white">
-        <span class="text-2xl"><%= number_to_currency(@cash_balance) %></span>
+        <% if @total_gain_loss.positive? %>
+          <span class="text-2xl text-green-500" style="text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);">
+            <%= number_to_currency(@total_gain_loss) %>
+          </span>
+        <% elsif @total_gain_loss.negative? %>
+          <span class="text-2xl text-red-500" style="text-shadow: 0 0 5px rgba(255, 0, 0, 0.5);">
+            <%= number_to_currency(@total_gain_loss) %>
+          </span>
+        <% else %>
+          <span class="text-2xl"><%= number_to_currency(@total_gain_loss) %></span>
+        <% end %>
       </div>
     </div>
   </div>

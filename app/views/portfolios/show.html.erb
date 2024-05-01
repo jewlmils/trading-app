@@ -8,12 +8,12 @@
   </div>
   
   <div class="text-white flex justify-between gap-2.5 w-full">
-    <div class="flex flex-col gap-2.5 w-1/3 px-6">
-      <h3 class="font-bold py-4">Portfolio Overview</h3>
+    <div class="flex flex-col gap-1 w-1/3 px-6">
+      <h3 class="font-bold py-2">Portfolio Overview</h3>
 
       <div>
         <div class="border-b border-gray-500">
-          <div class="flex items-center justify-between py-5">
+          <div class="flex items-center justify-between pt-4 pb-5">
             <p class="text-base text-gray-500">Share Holdings:</p>
             <span class="text-base"><%= @portfolio.number_of_shares %> shares</span>
           </div>
@@ -28,9 +28,34 @@
 
         <div class="border-b border-gray-500">
           <div class="flex items-center justify-between py-5">
-            <% if @performance_metrics.present? && @performance_metrics.is_a?(Hash) && @performance_metrics[:roi].present? %>
-              <p class="text-base text-gray-500">Return of Investment:</p>
-              <span class="text-base"><%= @performance_metrics[:roi].round(2) %>%</span>
+            <p class="text-base text-gray-500">Gain/Loss:</p>
+            <% if @gain_loss.positive? %>
+              <span class="text-base text-green-500" style="text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);">
+                <%= number_to_currency(@gain_loss) %>
+              </span>
+            <% elsif @gain_loss.negative? %>
+              <span class="text-base text-red-500" style="text-shadow: 0 0 5px rgba(255, 0, 0, 0.5);">
+                <%= number_to_currency(@gain_loss) %>
+              </span>
+            <% else %>
+              <span class="text-base"><%= number_to_currency(@gain_loss) %></span>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="border-b border-gray-500">
+          <div class="flex items-center justify-between py-5">
+            <p class="text-base text-gray-500">Return of Investment:</p>
+            <% if @roi.positive? %>
+              <span class="text-base text-green-500" style="text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);">
+                <%= @roi.round(2) %>%
+              </span>
+            <% elsif @roi.negative? %>
+              <span class="text-base text-red-500" style="text-shadow: 0 0 5px rgba(255, 0, 0, 0.5);">
+                <%= @roi.round(2) %>%
+              </span>
+            <% else %>
+              <span class="text-base"><%= @roi.round(2) %>%</span>
             <% end %>
           </div>
         </div>
