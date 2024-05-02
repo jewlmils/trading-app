@@ -6,17 +6,15 @@ class PortfoliosController < ApplicationController
         @portfolios = current_trader.portfolios
         @pagy, @paginated_portfolios = pagy(@portfolios, items: 3)
 
-        @cash_balance = current_trader.wallet
-
-        @total_portfolio_value = Portfolio.calculate_total_portfolio_value(@portfolios)
-        @total_gain_loss = Portfolio.total_gain_loss(@portfolios)
-        @portfolio_total_value_by_day = Portfolio.cumulative_total_value_by_day
-
         fetch_stock_data(@portfolios)
         fetch_realtime_stocks_data(@portfolios)
         
         StockPrice.update_stock_prices_for_today(@client)
         StockPrice.update_stock_prices_for_yesterday(@client)
+        
+        @total_portfolio_value = Portfolio.calculate_total_portfolio_value(@portfolios)
+        @total_gain_loss = Portfolio.total_gain_loss(@portfolios)
+        @portfolio_total_value_by_day = Portfolio.cumulative_total_value_by_day
     end
   
     def show

@@ -9,12 +9,6 @@ class ApplicationController < ActionController::Base
   
     def set_client
         iex_api_credentials = Rails.application.credentials.dig(:iex_api)
-
-        if iex_api_credentials.nil? || iex_api_credentials[:publishable_token].nil? || iex_api_credentials[:secret_token].nil?
-            flash[:alert] = "Oops! Missing or incomplete IEX API credentials. Let's fix that!"
-            redirect_to root_path
-            return
-        end
         
         @client = IEX::Api::Client.new(
             publishable_token: iex_api_credentials[:publishable_token],
