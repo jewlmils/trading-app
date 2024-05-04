@@ -11,6 +11,7 @@ class Trader < ApplicationRecord
 
   validates :first_name, presence: true
   validates :last_name, presence: true
+  validates :wallet, numericality: { greater_than_or_equal_to: 0 }
 
   scope :sorted, -> { order(Arel::Table.new(:traders)[:created_at].desc.nulls_first).order(updated_at: :desc) }
 

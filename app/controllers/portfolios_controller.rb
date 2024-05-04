@@ -9,8 +9,8 @@ class PortfoliosController < ApplicationController
         fetch_stock_data(@portfolios)
         fetch_realtime_stocks_data(@portfolios)
         
-        StockPrice.update_stock_prices_for_today(@client)
-        StockPrice.update_stock_prices_for_yesterday(@client)
+        StockPrice.update_stock_prices(@client, Date.today)
+        StockPrice.update_stock_prices(@client, Date.yesterday)
         
         @total_portfolio_value = Portfolio.calculate_total_portfolio_value(@portfolios)
         @total_gain_loss = Portfolio.total_gain_loss(@portfolios)
