@@ -2,6 +2,8 @@ class Transaction < ApplicationRecord
     belongs_to :trader
     belongs_to :stock
     belongs_to :portfolio
+
+    validates :number_of_shares, presence: true, numericality: { only_integer: true, greater_than: 0 }
   
     def self.search(search_term, all_transactions)
         if search_term.present?
@@ -28,6 +30,7 @@ class Transaction < ApplicationRecord
             s.company_name = quote.company_name
             s.price = quote.latest_price
         end
+        stock.update!(price: quote.latest_price)
         
         stock_price = StockPrice.find_or_create_by(stock_id: stock.id, date: Date.today)
         stock_price.update!(current_price: quote.latest_price)
