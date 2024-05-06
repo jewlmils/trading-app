@@ -110,6 +110,8 @@ class Portfolio < ApplicationRecord
             total_value = 0
             transactions_up_to_date = Transaction.where("DATE(created_at) <= ?", date)
         
+            next if transactions_up_to_date.empty?
+        
             transactions_up_to_date.each do |transaction|
                 stock_price = StockPrice.where(stock_id: transaction.stock_id, date: date).first
         
