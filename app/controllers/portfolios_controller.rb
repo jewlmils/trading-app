@@ -3,6 +3,7 @@ class PortfoliosController < ApplicationController
     before_action :set_client
 
     def index
+        @trader_id = current_trader.id
         @portfolios = current_trader.portfolios
         @pagy, @paginated_portfolios = pagy(@portfolios, items: 3)
 
@@ -14,7 +15,7 @@ class PortfoliosController < ApplicationController
         
         @total_portfolio_value = Portfolio.calculate_total_portfolio_value(@portfolios)
         @total_gain_loss = Portfolio.total_gain_loss(@portfolios)
-        @portfolio_total_value_by_day = Portfolio.cumulative_total_value_by_day
+        @portfolio_total_value_by_day = Portfolio.cumulative_total_value_by_day(@trader_id)
     end
   
     def show

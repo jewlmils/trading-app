@@ -98,17 +98,17 @@ class Portfolio < ApplicationRecord
     #   cumulative_values_by_day
     # end
 
-    def self.cumulative_total_value_by_day
+    def self.cumulative_total_value_by_day(trader_id)
         end_date = Date.today
         cumulative_values_by_day = {}
         
-        start_date = Transaction.minimum(:created_at)&.to_date || end_date
+        start_date = Transaction.where(trader_id: trader_id).minimum(:created_at)&.to_date || end_date
       
         return cumulative_values_by_day if start_date > end_date
       
         (start_date..end_date).each do |date|
             total_value = 0
-            transactions_up_to_date = Transaction.where("DATE(created_at) <= ?", date)
+            transactions_up_to_date = Transaction.where(trader_id: trader_id).where("DATE(created_at) <= ?", date)
         
             next if transactions_up_to_date.empty?
         

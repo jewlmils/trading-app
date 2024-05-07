@@ -25,12 +25,13 @@
   </div>
 
   <div class="flex flex-col gap-2.5">
-    <%= render 'portfolio_chart' %>
     <% if @portfolios.present? %>
+    <%= render 'portfolio_chart' %>
       <%= render 'portfolio_table'%>
     <% else %>
       <p class="text-white text-center italic">
-        You currently do not have any stocks in your portfolio. To begin investing, <%= link_to "purchase stocks", stocks_path %> now.
+        You currently do not have any stocks in your portfolio. To begin investing, 
+        <%= link_to "purchase stocks", stocks_path, class: "font-bold txt-gradient" %> now.
       </p>
     <% end%>
   </div>

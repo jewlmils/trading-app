@@ -3,16 +3,21 @@ class TransactionsController < ApplicationController
     before_action :set_client                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
   
     def index
-        @all_transactions = current_trader.transactions.order(created_at: :desc)
-        @transactions = Transaction.search(params[:search], @all_transactions)
+        @transactions = current_trader.transactions.order(created_at: :desc)
+        if params[:search].present?
+            @search_term = params[:search]
+            searched_transactions = @transactions.joins(:stock).where("stocks.company_name ILIKE :search_start OR stocks.ticker_symbol ILIKE :search_start", search_start: "#{params[:search]}%")
 
-        if @transactions.present?
-            @pagy, @paginated_transactions = pagy(@transactions, items: 5)
-        else
-            flash[:alert] = 'Looks like there are no transactions for that stock. Try again!'
-            redirect_to transactions_path
+            if searched_transactions.empty?
+                @transactions = current_trader.transactions.order(created_at: :desc)
+                flash[:alert] = "No results found for '#{@search_term}'"
+            else
+                @transactions = searched_transactions
+            end
         end
-        
+
+        @pagy, @paginated_transactions = pagy(@transactions, items: 5)
+
         @cash_balance = current_trader.wallet
     end
   
