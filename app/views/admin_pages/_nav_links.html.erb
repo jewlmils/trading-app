@@ -13,7 +13,7 @@
       <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
       </svg>
     </div>
-  <%= f.search_field :first_name_or_last_name_or_email_cont, class: "block w-full p-4 ps-10 text-sm text-white border border-none rounded-lg bg-strongdark", placeholder: "Search...", required: true %>
+  <%= f.search_field :first_name_or_last_name_or_email_cont, class: "block w-full p-4 ps-10 text-sm text-white border border-none rounded-lg bg-strongdark", placeholder: "Search...", autocomplete: "off", required: true %>
   <% end %>
   </div>
 </form>

@@ -4,18 +4,6 @@ class Transaction < ApplicationRecord
     belongs_to :portfolio
 
     validates :number_of_shares, presence: true, numericality: { only_integer: true, greater_than: 0 }
-  
-    def self.search(search_term, all_transactions)
-        if search_term.present?
-            joins(:stock)
-            .where(
-                "stocks.company_name ILIKE :search_start OR stocks.ticker_symbol ILIKE :search_start", 
-                search_start: "#{search_term}%"
-                )
-        else
-            all_transactions
-        end
-    end
     
     def self.execute_transaction(quote, trader, symbol, quantity, transaction_type, total_price)
         Transaction.transaction do

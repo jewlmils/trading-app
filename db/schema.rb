@@ -47,9 +47,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_20_064536) do
 
   create_table "stock_prices", force: :cascade do |t|
     t.date "date"
-    t.decimal "close_price"
-    t.decimal "current_price"
     t.bigint "stock_id", null: false
+    t.decimal "current_price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["stock_id"], name: "index_stock_prices_on_stock_id"

@@ -9,16 +9,16 @@
         <div class="grid md:grid-cols-2 md:gap-3 mb-4">
           <div>
             <%= f.label :first_name, class: "text-sm font-medium text-white" %><br />
-            <%= f.text_field :first_name, autocomplete: "given-name", placeholder: "Juan",  class: "w-full rounded-md border border-gray-300 shadow-md shadow-gray-900/10" %>
+            <%= f.text_field :first_name, autocomplete: "off", placeholder: "Juan",  class: "w-full rounded-md border border-gray-300 shadow-md shadow-gray-900/10" %>
           </div>
           <div>
             <%= f.label :last_name, class: "text-sm font-medium text-white" %><br />
-            <%= f.text_field :last_name, autocomplete: "family-name", placeholder: "Dela Cruz",  class: "w-full rounded-md border border-gray-300 shadow-md shadow-gray-900/10" %>
+            <%= f.text_field :last_name, autocomplete: "off", placeholder: "Dela Cruz",  class: "w-full rounded-md border border-gray-300 shadow-md shadow-gray-900/10" %>
           </div>
         </div>
         <div class="mb-4">
           <%= f.label :email, class: "block text-sm font-medium text-white" %>
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "name@email.com", class: "mt-1 p-2 w-full rounded-md border border-gray-300 shadow-md shadow-gray-900/10"%>
+          <%= f.email_field :email, autofocus: true, autocomplete: "off", placeholder: "name@email.com", class: "mt-1 p-2 w-full rounded-md border border-gray-300 shadow-md shadow-gray-900/10"%>
          </div>
         <% if @trader.new_record? %> 
         <div class="mb-4">
