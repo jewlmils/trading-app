@@ -1,7 +1,7 @@
 databases:
   - name: tradexpert
     databaseName: tradexpert
-    user: user
+    user: tradexpert
     plan: free
 
 services:
@@ -17,7 +17,7 @@ services:
         fromDatabase:
           name: tradexpert
           property: connectionString
-      - key: RAILS_MASTER_KEY
+      - key: 5411d86b57d19a60eaa08295ec43eb82
         sync: false
       - key: WEB_CONCURRENCY
         value: 2 # sensible default
