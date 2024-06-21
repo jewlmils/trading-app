@@ -17,7 +17,7 @@ services:
         fromDatabase:
           name: tradexpert
           property: connectionString
-      - key: 5411d86b57d19a60eaa08295ec43eb82
+      - key: 3c332cb41048c8549467ef4c7249ec49
         sync: false
       - key: WEB_CONCURRENCY
         value: 2 # sensible default
