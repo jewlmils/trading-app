@@ -1,6 +1,7 @@
 # TradeXpert
 
 This is a simple trading app project built using Devise for authentication, Tailwind CSS for styling, Turbo Stimulus for interactivity, RSpec for testing, and the IEX API for fetching stock market data.
+![TradeXpert Screenshot](app/assets/images/view.png)
 
 ### Technologies Used
 
@@ -35,24 +36,20 @@ As an Admin, I want to
 
 ### Installation
 
-1. Clone the repository:
+1. Fork and Clone the repository:
    `git clone <repository-url>`
-
-2. Install dependencies:
    `bundle install`
+   `rails db:prepare`
 
-3. Set up the database:
-   `rails db:create
-rails db:migrate`
+2. Obtain an API key from the IEX API website (https://iexcloud.io/) if you haven't already.
+3. Add your IEX API key to Rails credentials:
+   `rails credentials:edit`
+   Add the following lines to the opened file:
+   `iex:`
+   `api_key: your-api-key`
 
-4. Obtain an API key from the IEX API website (https://iexcloud.io/) if you haven't already.
-5. Set your IEX API key as an environment variable. You can do this by creating a `.env` file in the root of your project and adding the following line:
-   `IEX_API_KEY=your-api-key`
-
-6. Start the Rails server:
-   `rails server`
-
-7. Visit `http://localhost:3000` in your browser to view the app.
+4. Start the Rails server:
+   `bin/dev`
 
 ### Testing
 
